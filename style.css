@@ -15,3 +15,7 @@ section {
 .no-decoration {
   text-decoration: none;
 }
+
+.container {
+  max-width: 100%;
+}
