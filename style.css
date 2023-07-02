@@ -1,5 +1,5 @@
 .jumbotron {
-  padding-top: 6rem;
+  scroll-margin-top: 50px;
   background-color: #000000;
   color: #ffffff;
 }
@@ -10,4 +10,8 @@
 
 section {
   padding-top: 5rem;
+}
+
+.no-decoration {
+  text-decoration: none;
 }

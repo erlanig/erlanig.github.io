@@ -15,6 +15,8 @@
 
     <!--boostrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
     <!--my css-->
     <link rel="stylesheet" href="style.css" />
@@ -51,6 +53,17 @@
       <img src="img/pp.jpg" alt="Erlan Irhab Ghalib" width="200" class="rounded-circle img-thumbnail" />
       <h1 class="display-4"><strong>Erlan Irhab Ghalib</strong></h1>
       <p class="lead">Undergraduate Informatics Student at Diponegoro University</p>
+      <p>
+        <i class="bi bi-envelope"></i> :
+        <a href="mailto:erlanig221@gmail.com" class="text-white no-decoration">erlanig221@gmail.com</a>
+        |
+        <i class="bi bi-instagram"></i> :
+        <a href="https://www.instagram.com/erlanirhab" class="text-white no-decoration">@erlanirhab</a>
+        |
+        <i class="bi bi-linkedin"></i> :
+        <a href="https://www.linkedin.com/in/erlanig" class="text-white no-decoration">Erlan Irhab Ghalib</a>
+      </p>
+      
     </section>
     
     <!--end jumbtron-->
@@ -89,8 +102,7 @@
               <img src="img/experiences/medinfo.png" class="card-img-top" alt="Experience 1" />
               <div class="card-body">
                 <p class="card-text">
-                  Forum Silaturahmi Mahasiswa Kuningan-Semarang (Forsmaka) is a student organization in the Kuningan Regency area in Semarang City. Forsmaka adheres to the principle of kinship which hopes to unite Kuningan overseas students
-                  in Semarang.
+                  Head of Media and Information Division at Forum Silaturahmi Mahasiswa Kuningan-Semarang
                 </p>
               </div>
             </div>
@@ -100,8 +112,7 @@
               <img src="img/experiences/litbang.jpg" class="card-img-top" alt="Experience 2" />
               <div class="card-body">
                 <p class="card-text">
-                  HMIF (Informatics Student Associations) is a student association organization of the Department of Informatics, Faculty of Science of Mathematics, Diponegoro University. HMIF Undip acts as a forum that facilitates the
-                  activities of all students of Informatics.
+                  Research and Development Expert Staff at Himpunan Mahasiswa Informatika Undip (HMIF Undip)
                 </p>
               </div>
             </div>
@@ -111,8 +122,7 @@
               <img src="img/experiences/vix.png" class="card-img-top" alt="Experience 3" />
               <div class="card-body">
                 <p class="card-text">
-                  Participated in the Virtual Big Data Analytics Internship Experience at Kimia Farma and successfully completed all tasks related to Big Data Analytics from Kimia Farma, such as Data warehousing, Data analytics, SQL
-                  Querying, and Big Data Processing and Scheduling.
+                  Project-Based Intern : Big Data Analytics Virtual Internship Experience Kimia Farma
                 </p>
               </div>
             </div>
@@ -121,7 +131,7 @@
             <div class="card">
               <img src="img/experiences/forshare1.jpg" class="card-img-top" alt="Experience 4" />
               <div class="card-body">
-                <p class="card-text">Forsmaka Sharing and Chare (Forshare) is a charity event for orphans which is held annually at an orphanage in the Kuningan, West Java. Get a total donation of 200% of the target.</p>
+                <p class="card-text">Chief Executive of Forsmaka Sharing and Chare 2022 (Forshare 2022)</p>
               </div>
             </div>
           </div>
@@ -130,8 +140,7 @@
               <img src="img/experiences/fg.jpg" class="card-img-top" alt="Experience 5" />
               <div class="card-body">
                 <p class="card-text">
-                  Forsmaka Gathering (Forsathering) or First Gathering Is an annual event held after the acceptance of new students with the aim of introducing Forsmaka to new students and aiming to get to know each other. Design a
-                  Forsgathering 2022 banner.
+                  Coordinator of Publication and Documentation Staff at Forsmaka Gathering 2022 (Forsathering 2022)
                 </p>
               </div>
             </div>
@@ -141,8 +150,7 @@
               <img src="img/experiences/iconsole.jpg" class="card-img-top" alt="Experience 6" />
               <div class="card-body">
                 <p class="card-text">
-                  Informatics Concept Socialization (I-Console) is assistance for new Undip Informatics students, PMB Faculties and Departments, sharing, trainings oriented to new students 2022, LKMMPD, and Guilds. Received the "Best
-                  Pemanduan" award.
+                  Facilitator on Informatics Concept Socialization and Facilitator at LKMM-PD Informatika Undip 2022
                 </p>
               </div>
             </div>
@@ -152,7 +160,7 @@
     </section>
     <!--end experiences-->
 
-    <!--contact--
+    <!--contact-->
     <section id="contact">
       <div class="container">
         <div class="row text-center mb-3">
@@ -162,33 +170,32 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-7">
-            <form action="send_email.php" method="POST">
+            <form action="send.php" method="POST">
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" />
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="name" />
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="name@example.com" />
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="name@example.com" />
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
+                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
               </div>
-              <button type="send" class="btn btn-primary">Send</button>
+              <button type="submit" class="btn btn-primary">Send</button>
             </form>
           </div>
         </div>
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-7" style="background-color: #fff; padding: 20px;">
+          </div>
+        </div>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#f8b7b7"
-          fill-opacity="1"
-          d="M0,32L30,37.3C60,43,120,53,180,69.3C240,85,300,107,360,133.3C420,160,480,192,540,208C600,224,660,224,720,192C780,160,840,96,900,101.3C960,107,1020,181,1080,176C1140,171,1200,85,1260,42.7C1320,0,1380,0,1410,0L1440,0L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
-        ></path>
-      </svg>
     </section>
-    !--end contact-->
+    
+    
+    <!--end contact-->
 
     <!--footer-->
     <footer class="footer pb-2">
