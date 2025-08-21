@@ -1,492 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Start your development with Steller landing page." />
-    <meta name="author" content="Devcrud" />
-    <title>Portofolio | Erlan Irhab Ghalib</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css" />
-    <!-- Bootstrap + Steller main styles -->
-    <link rel="stylesheet" href="assets/css/steller.css" />
-  </head>
-  <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <!-- Page navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
-      <div class="container">
-        <a class="navbar-brand" href="#"><strong>Portofolio</strong></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto align-items-center">
-            <li class="nav-item">
-              <a class="nav-link" href="#beranda">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#tentang">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#ilmu">Knoweledge</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#kemampuan">Programming Languages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#pengalaman">Experience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#capstone">Project</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#kontak">Contact</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Erlan Irhab Ghalib</title>
+  <link rel="icon" type="image/png" href="assets/imgs/icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+    .icon-style { width: 24px; height: 24px; stroke-width: 1.5; }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-slow {
+      background-size: 200% 200%;
+      animation: gradientMove 15s ease infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+      <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">EIG</a>
+      <div class="hidden md:flex space-x-6 font-medium">
+        <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+        <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400">Skills</a>
+        <a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400">Experience</a>
+        <a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400">Projects</a>
+        <a href="#education" class="hover:text-indigo-600 dark:hover:text-indigo-400">Education</a>
+        <a href="#certificates" class="hover:text-indigo-600 dark:hover:text-indigo-400">Certificates</a>
+        <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
       </div>
-    </nav>
-    <!-- End of page navibation -->
+      <button id="theme-toggle" class="ml-4 text-2xl">🌙</button>
+    </div>
+  </nav>
 
-    <!-- Page Header -->
-    <header class="header" id="beranda">
-      <div class="container">
-        <div class="infos">
-          <h6 class="subtitle">Halo, I'm</h6>
-          <h6 class="title">Erlan Irhab Ghalib</h6>
-          <p>Bachelor of Informatics at Diponegoro University</p>
-          <div class="buttons pt-3 nav-item">
-            <a class="btn btn-primary rounded text-black" href="#kontak">Contact Me</a>
-            <!--<button class="btn btn-dark rounded">Download CV</button>-->
-          </div>
+  <!-- Hero -->
+  <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 overflow-hidden">
+    <!-- Animated gradient background -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500 via-purple-600 to-indigo-400 animate-gradient-slow"></div>
 
-          <div class="socials mt-4">
-            <a class="social-item" href="https://www.instagram.com/erlanig_"><i class="ti-instagram"></i></a>
-            <a class="social-item" href="https://www.linkedin.com/in/erlanig"><i class="ti-linkedin"></i></a>
-            <a class="social-item" href="https://github.com/erlanig"><i class="ti-github"></i></a>
-          </div>
-        </div>
-        <div class="img-holder">
-          <img src="assets/imgs/lu.svg" alt="" />
-        </div>
-      </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold text-white fade-up relative z-10">Erlan Irhab Ghalib</h1>
+    <p class="mt-4 text-lg md:text-xl max-w-2xl fade-up text-white relative z-10">
+      Informatics Graduate from Diponegoro University.<br>
+      Passionate about <span class="font-semibold text-indigo-200">Cloud</span>, 
+      <span class="font-semibold text-purple-200">AI</span>, and 
+      <span class="font-semibold text-indigo-200">Software Engineering</span>.
+    </p>
+    <div class="mt-6 flex gap-4 fade-up relative z-10">
+      <a href="#contact" class="px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow hover:scale-105 transition flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8m0-8L3 8m12 0l6 4.5" />
+        </svg>
+        Contact Me
+      </a>
+      <a href="https://github.com/erlanig" target="_blank" class="px-6 py-3 rounded-2xl border border-white text-white hover:bg-white/20 transition flex items-center gap-2">
+        GitHub
+      </a>
+    </div>
+  </header>
 
-      <!-- Header-widget -->
-      <div class="widget text-center">
-        <div class="widget-item md-2 flex item-center justify-center">
-          <h2>2</h2>
-          <p>Internship</p>
-        </div>
-        <div class="widget-item md-2 flex item-center justify-center ">
-          <h2>6</h2>
-          <p>Project Completed</p>
-        </div>
-        <!-- <div class="widget-item md-2 flex item-center justify-center">
-          <h2>1</h2>
-          <p>MBKM Activities</p>
-        </div> -->
-      </div>
-      
-    </header>
-    <!-- End of Page Header -->
-
-    <!-- About section -->
-    <section id="tentang" class="section mt-3">
-      <div class="container mt-5">
-        <div class="row text-center text-md-left">
-          <div class="col-md-3">
-            <img src="assets/imgs/ava.jpg" alt="" class="img-thumbnail mb-4 rounded-circle" />
-          </div>
-          <div class="pl-md-4 col-md-9">
-            <h6 class="title">Erlan Irhab Ghalib</h6>
-            <p class="subtitle">Undergraduate Informatics Student at Diponegoro University</p>
-            <p>
-              Hello, I am Erlan Irhab Ghalib, recent Informatics Graduate from Diponegoro University with hands-on experience in software development and cloud-native solutions. Skilled in designing scalable features, optimizing system performance, and ensuring reliability through containerization, GCP services, and CI/CD practices. Proficient in SQL/NoSQL databases with a strong grasp of data modeling and query optimization. Adept at infrastructure monitoring, testing, and maintaining robust documentation. Passionate about building efficient, data-aware back-end systems and cloud architectures that balance performance with scalability. Eager to leverage my full-stack troubleshooting skills and data fluency to deliver impactful engineering solutions..
-            </p>
-            <!----
-            <button class="btn btn-primary rounded mt-3">DOWNLOAD CV</button>
-            !---->
-          </div>
+    <!-- About -->
+    <section id="about" class="py-20 max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <img src="assets/imgs/avatar.png" class="rounded-2xl shadow-lg w-64 mx-auto" />
+        <div>
+          <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21V12H5.121z"/></svg>
+            About Me
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            I am a fresh graduate of Informatics from Diponegoro University with hands-on experience in software development, data analysis, and IoT engineering. 
+            Skilled in backend development, cloud-native solutions, and machine learning projects. 
+            Proficient in Python, JavaScript, PHP, SQL/NoSQL, and experienced with cloud platforms (GCP, AWS).
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ilmu section -->
-    <section id="ilmu" class="section">
-      <div class="container text-center">
-        <h6 class="subtitle">Knoweledge</h6>
-        <h6 class="section-title mb-4">What knowledge do I have?</h6>
-        <div class="row">
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-desktop"></i>
-                <h5>Progamming</h5>
-              </div>
-            </div>
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 flex justify-center items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      Technical Skills
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8 justify-items-center">
+      <!-- Programming -->
+      <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300">
+        <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Programming</h3>
+        <div class="flex gap-4 flex-wrap justify-center">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-10 h-10" alt="Python">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-10 h-10" alt="JavaScript">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-10 h-10" alt="PHP">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-10 h-10" alt="Java">
+        </div>
+      </div>
+
+      <!-- Databases -->
+      <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300">
+        <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Databases</h3>
+        <div class="flex gap-4 flex-wrap justify-center">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-10 h-10" alt="MySQL">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="w-10 h-10" alt="PostgreSQL">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" class="w-10 h-10" alt="Oracle">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" class="w-10 h-10" alt="SQL Server">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="w-10 h-10" alt="Supabase">
+        </div>
+      </div>
+
+      <!-- Cloud & Tools -->
+      <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300">
+        <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Cloud & Tools</h3>
+        <div class="flex gap-4 flex-wrap justify-center">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="w-10 h-10" alt="GCP">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="w-10 h-10" alt="AWS">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-10 h-10" alt="Docker">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="w-10 h-10" alt="Nginx">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-10 h-10" alt="Git">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" class="w-10 h-10" alt="Postman">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" class="w-10 h-10" alt="Selenium">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Experience -->
+  <section id="experience" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zM12 14v7m0-7L3 9m9 5l9-5"/></svg>
+        Work Experience
+      </h2>
+      <div class="space-y-8">
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow p-6 flex items-start gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-indigo-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/></svg>
+          <div>
+            <h3 class="font-semibold">PT Bukaka Teknik Utama, Tbk – Management Trainee (2025)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Developed Delivery Orders, Packing Lists, and Master Data website using Laravel + MS SQL Server.</p>
           </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-user"></i>
-                <h5>UI/UX Design</h5>
-              </div>
-            </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow p-6 flex items-start gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-purple-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-6-8h6"/></svg>
+          <div>
+            <h3 class="font-semibold">Bank Syariah Indonesia – Data Analyst Intern (2025)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Processed savings data of 30M+ customers, analyzed fund drops using SQL Server & Power BI.</p>
           </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-paint-bucket"></i>
-                <h5>Graphic Design</h5>
-              </div>
-            </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow p-6 flex items-start gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-green-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <div>
+            <h3 class="font-semibold">PT Kalbe Farma, Tbk – IoT Engineer Intern (2024-2025)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Prototyped defect detection using Jetson Orin Nano & thermal camera, automated defect logging to cloud.</p>
           </div>
-          <div class="col-sm-6 col-md-3 mb-4">
-            <div class="custom-card card border">
-              <div class="card-body">
-                <i class="icon ti-money"></i>
-                <h5>Business</h5>
-              </div>
-            </div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl shadow p-6 flex items-start gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-yellow-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6"/></svg>
+          <div>
+            <h3 class="font-semibold">Rejeki Toyota – Software Engineer Intern (2024)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Built Purchase Request Management System integrated with Oracle-based E-Budget System.</p>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End of Sectoin -->
+    </div>
+  </section>
 
-    <!-- Skills section -->
-    <section id="kemampuan" class="section">
-      <div class="container text-center">
-        <h6 class="subtitle">Programming Langugaes</h6>
-        <h6 class="section-title mb-4">What programming languages ​​do I master?</h6>
-        <div class="row text-left">
-          <div class="col-sm-6">
-            <h6 class="mb-3">Python</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 78%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>89%</span></div>
-            </div>
+  <!-- Projects -->
+  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+        Projects
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-indigo-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+          <div>
+            <p class="font-semibold">Tanamify App Backend (2024)</p>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">ML-based crop optimization API using Flask & GCP.</p>
           </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">C</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>83%</span></div>
-            </div>
+        </div>
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-purple-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+          <div>
+            <p class="font-semibold">IRS Verification System (2024)</p>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">Express.js + PostgreSQL + Docker + Nginx deployment on GCP.</p>
           </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">C++</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>95%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">Java</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 69%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">MySQL</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">HTML & CSS</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">Kotlin</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">Dart</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">PHP</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <h6 class="mb-3">JavaScript</h6>
-            <div class="progress">
-              <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-            </div>
+        </div>
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-green-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+          <div>
+            <p class="font-semibold">Defect Detection Prototype (2025)</p>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">Jetson Orin Nano + thermal imaging + Supabase integration.</p>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End of Skills sections -->
+    </div>
+  </section>
 
-    <!-- Portfolio section -->
-    <section id="pengalaman" class="section">
-      <div class="container text-center">
-        <h6 class="subtitle">Experience</h6>
-        <h6 class="section-title mb-4">What experience do I have?</h6>
-        <div class="row text-left"></div>
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/medinfo.png" class="card-img-top" alt="Experience 1" />
-              <div class="card-body">
-                <p class="card-text">Head of Media and Information Division at Forum Silaturahmi Mahasiswa Kuningan-Semarang</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/litbang.jpg" class="card-img-top" alt="Experience 2" />
-              <div class="card-body">
-                <p class="card-text">Research and Development Expert Staff at Himpunan Mahasiswa Informatika Undip (HMIF Undip)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/vix.png" class="card-img-top" alt="Experience 3" />
-              <div class="card-body">
-                <p class="card-text">Project-Based Intern : Big Data Analytics Virtual Internship Experience Kimia Farma</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/fg.jpg" class="card-img-top" alt="Experience 5" />
-              <div class="card-body">
-                <p class="card-text">Coordinator of Publication and Documentation Staff at Forsmaka Gathering 2022</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/fgs.jpg" class="card-img-top" alt="Experience 5" />
-              <div class="card-body">
-                <p class="card-text">Coordinator of Publication and Documentation Staff at Forsmaka Goes to School 2023</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/iconsole.jpg" class="card-img-top" alt="Experience 6" />
-              <div class="card-body">
-                <p class="card-text">Facilitator on Informatics Concept Socialization and Facilitator at LKMM-PD Informatika Undip 2022</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/forshare1.jpg" class="card-img-top" alt="Experience 4" />
-              <div class="card-body">
-                <p class="card-text">Chief Executive of Forsmaka Sharing and Chare 2022 (Forshare 2022)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/anfor2023.jpg" class="card-img-top" alt="Experience 6" />
-              <div class="card-body">
-                <p class="card-text">Public Relations Division at Anforcom 2023</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/asprak.jpg" class="card-img-top" alt="Experience 6" />
-              <div class="card-body">
-                <p class="card-text">Operating Systems Lab Assistant</p>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Certificates Section -->
+<section id="certificates" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 flex justify-center items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6m16-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6"/>
+      </svg>
+      Certificates & Achievements
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Certificate Card 1 -->
+      <div class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl shadow p-6 flex flex-col items-start gap-2 hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
+        </svg>
+        <h3 class="font-semibold text-lg">Bangkit Cloud Computing</h3>
+        <p class="text-sm opacity-80">Graduate with Distinction</p>
       </div>
-    </section>
-    <section id="capstone" class="section">
-      <div class="container text-center">
-        <h6 class="subtitle">Capstone Project</h6>
-        <h6 class="section-title mb-4">What projects have I completed?</h6>
-        <div class="row text-left"></div>
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/monitoring.png" class="card-img-top" alt="Capstone 1" />
-              <div class="card-body">
-                <p class="card-text">Web Sistem Monitoring Akademik Mahasiswa Informatika Undip (Laravel + Tailwind CSS + phpmyadmin)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/ml.png" class="card-img-top" alt="Capstone 2" />
-              <div class="card-body">
-                <p class="card-text">Web Traffic Density Prediction (Flask + Python + KNN Algorithm + Tailwind CSS)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/android.png" class="card-img-top" alt="Capstone 3" />
-              <div class="card-body">
-                <p class="card-text">Warmindo Employee Android Application (Express JS + Flutter + PostgreSQL)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/mammo.png" class="card-img-top" alt="Capstone 4" />
-              <div class="card-body">
-                <p class="card-text">Web-Based Prediction of Benign and Malignant Mammography Masses Using the KNN Algorithm (Flask + Python + KNN Algorithm + Tailwind CSS)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/pr.png" class="card-img-top" alt="Capstone 5" />
-              <div class="card-body">
-                <p class="card-text">
-                  Development of Website Based Purchase Request Management Information System Integrated with E-Budgeting System at PT Rejeki Toyota (PHP + JS + Bootstrap + Jaspersoft)</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-2">
-            <div class="card">
-              <img src="assets/imgs/asc.png" class="card-img-top" alt="Capstone 6" />
-              <div class="card-body">
-                <p class="card-text">                
-                  Development of Machine Learning API and Integration with Google Cloud (Hapi + TensorFlow Js + Google Cloud)</p>
-              </div>
-            </div>
-          </div>
+      <!-- Certificate Card 2 -->
+      <div class="bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-xl shadow p-6 flex flex-col items-start gap-2 hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+        <h3 class="font-semibold text-lg">Alibaba Cloud ACA</h3>
+        <p class="text-sm opacity-80">Cloud Computing Certification</p>
       </div>
-    </section>
-    <!-- End of portfolio section -->
-
-    <!-- Testmonial Section --
-    <section id="testmonial" class="section">
-      <div class="container text-center">
-        <h6 class="subtitle">Testmonial</h6>
-        <h6 class="section-title mb-4">What People Say About Me</h6>
-        <p class="mb-5 pb-4">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br />
-          rerum commodi corrupti, temporibus non quam.
-        </p>
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card testmonial-card border">
-                <div class="card-body">
-                  <img src="assets/imgs/avatar-1.jpg" alt="" />
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nostrum voluptates in enim vel amet?</p>
-                  <h1 class="title">Emma Re</h1>
-                  <h1 class="subtitle">Graphic Designer</h1>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card testmonial-card border">
-                <div class="card-body">
-                  <img src="assets/imgs/avatar-2.jpg" alt="" />
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nostrum voluptates in enim vel amet?</p>
-                  <h1 class="title">James Bert</h1>
-                  <h1 class="subtitle">Web Designer</h1>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card testmonial-card border">
-                <div class="card-body">
-                  <img src="assets/imgs/avatar-3.jpg" alt="" />
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam nostrum voluptates in enim vel amet?</p>
-                  <h1 class="title">Michael Abra</h1>
-                  <h1 class="subtitle">Web Developer</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Certificate Card 3 -->
+      <div class="bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl shadow p-6 flex flex-col items-start gap-2 hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        <h3 class="font-semibold text-lg">PL/SQL Programming</h3>
+        <p class="text-sm opacity-80">Database Programming Certification</p>
       </div>
-    </section>
-    !-- End of testmonial section -->
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="kontak" class="position-relative section">
-      <div class="container text-center">
-        <div class="contact-infos">
-          <div class="item">
-            <h6 class="subtitle">Contact</h6>
-            <h4 class="section-title">Contact Me</h4>
-            <h7 class="section-title mb-4">----------------------------------</h7>
-            <div class="item">
-              <i class="ti-email"></i>
-              <div class="mb-3">
-                <h5>Email Address</h5>
-                <div><a href="mailto:erlanig221@gmail.com" class="text-dark no-decoration">erlanig221@gmail.com</a></div>
-                <p></p>
-              </div>
-            </div>
-            <h5>Social Media</h5>
-            <div class="col-sm-6.center">
-              <div class="socials2 mt-2 justify-content-center">
-                <a class="social-item2" href="https://www.instagram.com/erlanirhab"><i class="ti-instagram"></i></a>
-                <a class="social-item2" href="https://www.linkedin.com/in/erlanig"><i class="ti-linkedin"></i></a>
-                <a class="social-item2" href="https://github.com/erlanig"><i class="ti-github"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-4xl mx-auto text-center px-6">
+    <h2 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 flex justify-center items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12h.01M8 12h.01M12 16h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+      </svg>
+      Get In Touch
+    </h2>
+    
+    <!-- Contact Info Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200">Email</h3>
+        <p class="text-gray-600 dark:text-gray-400"><a href="mailto:erlanig221@gmail.com" class="hover:text-indigo-500 transition">erlanig221@gmail.com</a></p>
       </div>
-    </section>
-    <!-- End of Contact Section -->
-
-    <!--footer-->
-    <footer class="footer py-2 gray text-white text-center">
-      <div class="container1">
-        <p class="m-0">
-          Created with <span style="color: #ff0000">&#9829;</span> by
-          <a href="https://www.linkedin.com/in/erlanig" class="text-white fw-bold">Erlan Irhab Ghalib</a>
-        </p>
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l1.5 1.5a2 2 0 002.83 0L12 6l4.67 5.5a2 2 0 002.83 0L21 10"/>
+        </svg>
+        <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200">Phone</h3>
+        <p class="text-gray-600 dark:text-gray-400">+62 821-1665-0025</p>
       </div>
-    </footer>
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v10a2 2 0 01-2 2h-2M7 8H5a2 2 0 00-2 2v10a2 2 0 002 2h2m0-14V4a4 4 0 014-4h2a4 4 0 014 4v4"/>
+        </svg>
+        <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200">Location</h3>
+        <p class="text-gray-600 dark:text-gray-400">Jakarta, Indonesia</p>
+      </div>
+    </div>
 
-    <style>
-      footer {
-        background-color: #6c757d;
-        padding: 5px;
-        text-align: center;
-        color: #343a40;
-      }
+    <!-- Social Media -->
+    <div class="flex justify-center gap-6 mt-6">
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/erlanig" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 hover:bg-blue-600 hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.23 8.67h4.54V24H.23V8.67zM8.66 8.67h4.35v2.1h.06c.61-1.15 2.11-2.36 4.35-2.36 4.65 0 5.5 3.07 5.5 7.06V24h-4.54v-7.6c0-1.82-.03-4.16-2.54-4.16-2.55 0-2.94 1.99-2.94 4.04V24H8.66V8.67z"/>
+      </svg>
+    </a>
 
-      footer a {
-        color: #0004ff;
-        text-decoration: none;
-      }
+    <!-- GitHub -->
+    <a href="https://github.com/erlanig" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-800 hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577v-2.023c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.204.084 1.838 1.235 1.838 1.235 1.07 1.834 2.809 1.304 3.495.997.108-.774.418-1.304.762-1.603-2.665-.303-5.466-1.333-5.466-5.933 0-1.31.468-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.552 3.294-1.23 3.294-1.23.653 1.653.242 2.873.119 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.805 5.625-5.475 5.922.43.372.823 1.103.823 2.222v3.293c0 .32.217.694.825.576C20.565 21.796 24 17.303 24 12c0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/erlanig_" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full bg-pink-100 dark:bg-pink-900 text-pink-600 hover:bg-pink-600 hover:text-white transition">
+      <!-- Instagram Simple Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37a4 4 0 11-7.998-.001 4 4 0 017.998.001z"></path>
+        <line x1="17.5" y1="6.5" x2="17.5" y2="6.501"></line>
+      </svg>
+    </a>
+    <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+      <a href="https://linkedin.com/in/erlanig" target="_blank" class="w-12 h-12 bg-blue-500 text-white flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.23 8.67h4.54V24H.23V8.67zM8.66 8.67h4.35v2.1h.06c.61-1.15 2.11-2.36 4.35-2.36 4.65 0 5.5 3.07 5.5 7.06V24h-4.54v-7.6c0-1.82-.03-4.16-2.54-4.16-2.55 0-2.94 1.99-2.94 4.04V24H8.66V8.67z"/>
+        </svg>
+      </a>
+      <a href="https://github.com/erlanig" target="_blank" class="w-12 h-12 bg-gray-800 text-white flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577v-2.023c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.204.084 1.838 1.235 1.838 1.235 1.07 1.834 2.809 1.304 3.495.997.108-.774.418-1.304.762-1.603-2.665-.303-5.466-1.333-5.466-5.933 0-1.31.468-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.552 3.294-1.23 3.294-1.23.653 1.653.242 2.873.119 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.805 5.625-5.475 5.922.43.372.823 1.103.823 2.222v3.293c0 .32.217.694.825.576C20.565 21.796 24 17.303 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+    </div>
+    </div>
+  </div>
+</section>
+<!-- Footer / Made By -->
+<footer class="dark:bg-gray-900 dark:text-gray-100 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
+  Made with <span class="text-red-500">❤️</span> by Erlan Irhab Ghalib
+</footer>
 
-      footer a:hover {
-        color: #343a40;
-      }
-    </style>
+  <script>
+    const faders = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+    }, { threshold: 0.2 });
+    faders.forEach(fader => observer.observe(fader));
 
-    <!--end footer-->
-
-    <!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- steller js -->
-    <script src="assets/js/steller.js"></script>
-  </body>
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
 </html>
