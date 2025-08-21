@@ -57,6 +57,9 @@
       Passionate about <span class="font-semibold text-indigo-200">Cloud</span>, 
       <span class="font-semibold text-purple-200">AI</span>, and 
       <span class="font-semibold text-indigo-200">Software Engineering</span>.
+      <!-- <p class="mt-4 text-lg md:text-xl max-w-2xl fade-up text-white relative z-10">
+        <span id="typed-text"></span>
+      </p> -->
     </p>
     <div class="mt-6 flex gap-4 fade-up relative z-10">
       <a href="#contact" class="px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow hover:scale-105 transition flex items-center gap-2">
@@ -65,8 +68,11 @@
         </svg>
         Contact Me
       </a>
-      <a href="https://github.com/erlanig" target="_blank" class="px-6 py-3 rounded-2xl border border-white text-white hover:bg-white/20 transition flex items-center gap-2">
-        GitHub
+      <a href="https://drive.google.com/uc?export=download&id=1dU9JjTZWZMaRAflMsI0UWFnQenhB6vMs"  download class="px-6 py-3 rounded-2xl border border-white text-white hover:bg-white/20 transition flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12v8m0 0l-4-4m4 4l4-4M12 4v8" />
+        </svg>
+        Download CV
       </a>
     </div>
   </header>
@@ -344,6 +350,26 @@
       document.body.classList.toggle('dark');
       toggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
     });
+
+    const phrases = ["Oh  ", "Hai!  ", "I'm Erlan  "];
+let i = 0, j = 0, currentText = "", isDeleting = false;
+
+function type() {
+  if(i >= phrases.length) i = 0;
+  const fullText = phrases[i];
+  if(isDeleting) {
+    currentText = fullText.substring(0, j--);
+  } else {
+    currentText = fullText.substring(0, j++);
+  }
+  document.getElementById("typed-text").textContent = currentText;
+  
+  if(!isDeleting && j === fullText.length) { isDeleting = true; setTimeout(type, 1000); }
+  else if(isDeleting && j === 0) { isDeleting = false; i++; setTimeout(type, 500); }
+  else { setTimeout(type, isDeleting ? 50 : 100); }
+}
+
+type();
   </script>
 </body>
 </html>
