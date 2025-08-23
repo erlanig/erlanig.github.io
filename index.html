@@ -11,6 +11,14 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    html { scroll-behavior: smooth; }
+    .hero-overlay {
+      background: rgba(0,0,0,0.4);
+      position: absolute;
+      inset: 0;
+      z-index: -5;
+    }
+
     body { font-family: 'Poppins', sans-serif; }
     .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .fade-up.show { opacity: 1; transform: translateY(0); }
@@ -30,9 +38,13 @@
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow z-50">
+  <nav class="fixed top-0 left-0 w-full bg-white/30 dark:bg-gray-800/30 backdrop-blur-md shadow z-50">
     <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
-      <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">EIG</a>
+      <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+        <img src="assets/imgs/icon.png" class="w-8 h-8">
+      </a>
+
+      <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-6 font-medium">
         <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
         <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400">Skills</a>
@@ -42,7 +54,24 @@
         <a href="#certificates" class="hover:text-indigo-600 dark:hover:text-indigo-400">Certificates</a>
         <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
       </div>
-      <!-- <button id="theme-toggle" class="ml-4 text-2xl">🌙</button> -->
+
+      <!-- Mobile Hamburger -->
+      <button id="mobile-menu-button" class="md:hidden flex items-center focus:outline-none">
+        <svg class="w-8 h-8 text-gray-800 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800/95 backdrop-blur-md shadow-md">
+      <a href="#about" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">About</a>
+      <a href="#skills" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Skills</a>
+      <a href="#experience" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Experience</a>
+      <a href="#projects" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Projects</a>
+      <a href="#education" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Education</a>
+      <a href="#certificates" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Certificates</a>
+      <a href="#contact" class="block px-4 py-3 hover:bg-indigo-100 dark:hover:bg-gray-700">Contact</a>
     </div>
   </nav>
 
@@ -86,7 +115,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21V12H5.121z"/></svg>
             About Me
           </h2>
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
             I am a fresh graduate of Informatics from Diponegoro University with hands-on experience in software development, data analysis, and IoT engineering. 
             Skilled in backend development, cloud-native solutions, and machine learning projects. 
             Proficient in Python, JavaScript, PHP, SQL/NoSQL, and experienced with cloud platforms (GCP, AWS).
@@ -186,39 +215,168 @@
       </div>
     </div>
   </section>
-
-  <!-- Projects -->
-  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+  
+  <!-- Education (Timeline) -->
+  <section id="education" class="py-20 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
-        Projects
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+        </svg>
+        Education
       </h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-indigo-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
-          <div>
-            <p class="font-semibold">Tanamify App Backend (2024)</p>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">ML-based crop optimization API using Flask & GCP.</p>
+
+      <div class="relative space-y-16">
+        <!-- Connector Line -->
+        <div class="absolute top-0 left-1/2 w-1 h-full bg-indigo-300 dark:bg-indigo-500 transform -translate-x-1/2"></div>
+
+        <!-- Item 1 (Left) -->
+        <div class="relative flex justify-start w-full">
+          <div class="w-1/2 pr-8 text-right">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Universitas Diponegoro</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Bachelor of Informatics (2019 – 2025)</p>
+            <p class="mt-1 text-gray-600 dark:text-gray-400">Recieved Dean's Award (15 Best Graduates of the 124th Graduation Ceremony of the Faculty of Science and Mathematics).</p>
           </div>
+          <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-indigo-500 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-900 top-2"></div>
         </div>
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-purple-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
-          <div>
-            <p class="font-semibold">IRS Verification System (2024)</p>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Express.js + PostgreSQL + Docker + Nginx deployment on GCP.</p>
+
+        <!-- Item 2 (Right) -->
+        <div class="relative flex justify-end w-full">
+          <div class="w-1/2 pl-8 text-left">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">SMAN 2 Kuningan</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Science Major (2016 – 2019)</p>
           </div>
+          <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-indigo-500 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-900 top-2"></div>
         </div>
-        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 flex items-start gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-green-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
-          <div>
-            <p class="font-semibold">Defect Detection Prototype (2025)</p>
-            <p class="text-gray-600 dark:text-gray-300 text-sm">Jetson Orin Nano + thermal imaging + Supabase integration.</p>
+
+        <!-- Item 3 (Left) -->
+        <div class="relative flex justify-start w-full">
+          <div class="w-1/2 pr-8 text-right">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">SMPN 1 Kuningan</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">(2013 – 2016)</p>
           </div>
+          <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-indigo-500 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-900 top-2"></div>
+        </div>
+
+        <!-- Item 4 (Right) -->
+        <div class="relative flex justify-end w-full">
+          <div class="w-1/2 pl-8 text-left">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">SDN Unggulan Kuningan</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">(2007 – 2013)</p>
+          </div>
+          <div class="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-indigo-500 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-900 top-2"></div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Projects (Cards without images) -->
+  <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/>
+      </svg>
+      Projects
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Project Card -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          <p class="font-semibold">Graduation Patterns Analysis (2023)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Analyzed graduation data of FSM Undip (2012–2019) using CRISP-DM.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h13M9 11V5h13M4 6h.01M4 12h.01M4 18h.01"/>
+          </svg>
+          <p class="font-semibold">Informatics Student Monitoring (2023)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Developed Dept-level monitoring website using Laravel framework.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3"/>
+          </svg>
+          <p class="font-semibold">Tanamify Backend (2024)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Developed API for ML-based crop optimization app, managed delivery and alignment with stakeholder goals.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
+          </svg>
+          <p class="font-semibold">IRS Verification System (2024)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Built backend with Express.js, PostgreSQL, Docker, tested with Postman, deployed on GCP.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 16h10"/>
+          </svg>
+          <p class="font-semibold">Purchase Request MIS (2024)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Developed MIS integrated with Toyota’s E-Budget system, reports via Jaspersoft Studio.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/>
+          </svg>
+          <p class="font-semibold">Defect Detection Prototype (2025)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Real-time crack detection with webcams + thermal imaging + ML on Jetson Orin Nano.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/>
+          </svg>
+          <p class="font-semibold">AWS Secure Architecture (2025)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Designed secure AWS infra using S3 in VPC, VPC endpoints, and CloudWatch monitoring.</p>
+      </div>
+
+      <!-- New Project 1 -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"/>
+          </svg>
+          <p class="font-semibold">Automatic Sentiment Analysis on Election Tweets (2024)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Implemented sentiment analysis system for 2024 Indonesian Presidential Election tweets using NLP with TensorFlow.</p>
+      </div>
+
+      <!-- New Project 2 -->
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6"/>
+          </svg>
+          <p class="font-semibold">PT Bhara Sheva Konstruksi Information System (2025)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Developed integrated information system Delivery Orders, SIPB, Packing List & Shipment Tracking (with photo, watermark timestamp, and user proof).</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <!-- Certificates Section -->
 <section id="certificates" class="py-20 bg-gray-50 dark:bg-gray-800">
@@ -340,6 +498,9 @@
 
   <script>
     const faders = document.querySelectorAll('.fade-up');
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
     }, { threshold: 0.2 });
@@ -352,24 +513,28 @@
     });
 
     const phrases = ["Oh  ", "Hai!  ", "I'm Erlan  "];
-let i = 0, j = 0, currentText = "", isDeleting = false;
+    let i = 0, j = 0, currentText = "", isDeleting = false;
 
-function type() {
-  if(i >= phrases.length) i = 0;
-  const fullText = phrases[i];
-  if(isDeleting) {
-    currentText = fullText.substring(0, j--);
-  } else {
-    currentText = fullText.substring(0, j++);
-  }
-  document.getElementById("typed-text").textContent = currentText;
-  
-  if(!isDeleting && j === fullText.length) { isDeleting = true; setTimeout(type, 1000); }
-  else if(isDeleting && j === 0) { isDeleting = false; i++; setTimeout(type, 500); }
-  else { setTimeout(type, isDeleting ? 50 : 100); }
-}
+    function type() {
+      if(i >= phrases.length) i = 0;
+      const fullText = phrases[i];
+      if(isDeleting) {
+        currentText = fullText.substring(0, j--);
+      } else {
+        currentText = fullText.substring(0, j++);
+      }
+      document.getElementById("typed-text").textContent = currentText;
+      
+      if(!isDeleting && j === fullText.length) { isDeleting = true; setTimeout(type, 1000); }
+      else if(isDeleting && j === 0) { isDeleting = false; i++; setTimeout(type, 500); }
+      else { setTimeout(type, isDeleting ? 50 : 100); }
+    }
 
-type();
+    type();
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>
