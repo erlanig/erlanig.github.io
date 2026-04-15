@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erlan Irhab Ghalib | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Space Grotesk', sans-serif; 
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    
+    .serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cursor Trail Effect */
+    .cursor-trail {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: 0.1s;
+      mix-blend-mode: difference;
+    }
+
+    /* Lanyard Effect - Realistic */
+    .lanyard-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lanyard {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 80px;
+    }
+
+    /* Lanyard Rope - Left Side */
+    .lanyard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 2px;
+      width: 6px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        #333 0px,
+        #555 2px,
+        #333 4px
+      );
+      border-radius: 3px;
+      box-shadow: inset -1px 0 2px rgba(0,0,0,0.5), 1px 1px 2px rgba(255,255,255,0.1);
+    }
+
+    /* Lanyard Rope - Right Side */
+    .lanyard::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 2px;
+      width: 6px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        #333 0px,
+        #555 2px,
+        #333 4px
+      );
+      border-radius: 3px;
+      box-shadow: inset 1px 0 2px rgba(0,0,0,0.5), -1px 1px 2px rgba(255,255,255,0.1);
+    }
+
+    /* Lanyard Clip */
+    .lanyard-clip {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 20px;
+      background: linear-gradient(145deg, #888, #444);
+      border-radius: 4px 4px 0 0;
+      box-shadow: 
+        0 2px 4px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    .lanyard-clip::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: #333;
+      border-radius: 50%;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+    }
+
+    /* Lanyard Hook */
+    .lanyard-hook {
+      position: absolute;
+      top: -95px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 6px;
+      background: #666;
+      border-radius: 6px 6px 0 0;
+      box-shadow: inset 0 -1px 2px rgba(0,0,0,0.5);
+    }
+
+    .id-card {
+      position: relative;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+      border: 2px solid #fff;
+      padding: 2rem;
+      box-shadow: 
+        0 10px 30px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: cardSwing 3s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes cardSwing {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    /* Text Scramble Animation */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Marquee Text */
+    .marquee {
+      display: flex;
+      overflow: hidden;
+      user-select: none;
+      gap: 2rem;
+    }
+    
+    .marquee-content {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      min-width: 100%;
+      animation: scroll 25s linear infinite;
+    }
+    
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Grid Background */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* Magnetic Button Effect */
+    .magnetic {
+      transition: transform 0.2s ease;
+    }
+
+    /* Stroke Text */
+    .stroke-text {
+      -webkit-text-stroke: 2px #fff;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Card Hover Effect */
+    .card-3d {
+      transition: all 0.3s ease;
+    }
+    
+    .card-3d:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Noise Effect */
+    @keyframes noise {
+      0%, 100% { background-position: 0 0; }
+      10% { background-position: -5% -10%; }
+      20% { background-position: -15% 5%; }
+      30% { background-position: 7% -25%; }
+      40% { background-position: 20% 25%; }
+      50% { background-position: -25% 10%; }
+      60% { background-position: 15% 5%; }
+      70% { background-position: 0 15%; }
+      80% { background-position: 25% 35%; }
+      90% { background-position: -10% 10%; }
+    }
+
+    .noise {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .noise::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      width: 200%;
+      height: 200%;
+      background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=') repeat;
+      animation: noise 1s steps(2) infinite;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    /* Scan Line */
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+
+    .scanline {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      animation: scan 4s linear infinite;
+    }
+
+    /* Timeline Styling */
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      border-left: 2px solid #333;
+      transition: border-color 0.3s;
+    }
+
+    .timeline-item:hover {
+      border-left-color: #fff;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px #000, 0 0 0 5px #fff;
+    }
+
+    /* Professional Stats */
+    .stat-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .stat-box:hover::after {
+      left: 100%;
+    }
+
+    /* Image Frame */
+    .photo-frame {
+      position: relative;
+      border: 8px solid #fff;
+      box-shadow: 
+        0 0 0 2px #000,
+        0 10px 30px rgba(0,0,0,0.5),
+        inset 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    /* Number Counter Animation */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .count-up {
+      animation: countUp 0.5s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  
+  <!-- Custom Cursor -->
+  <div class="cursor-trail" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-2xl font-bold serif">EIG</div>
+      <div class="hidden md:flex gap-8 text-sm uppercase tracking-wider">
+        <a href="#about" class="hover:text-gray-400 transition">About</a>
+        <a href="#experience" class="hover:text-gray-400 transition">Experience</a>
+        <a href="#skills" class="hover:text-gray-400 transition">Skills</a>
+        <a href="#projects" class="hover:text-gray-400 transition">Projects</a>
+        <a href="#achievements" class="hover:text-gray-400 transition">Achievements</a>
+        <a href="#contact" class="hover:text-gray-400 transition">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center relative noise grid-bg overflow-hidden pt-20">
+    <div class="scanline"></div>
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        
+        <!-- Left Side - ID Card with Photo -->
+        <div class="reveal flex justify-center">
+          <div class="lanyard-container">
+            <div class="lanyard-clip"></div>
+            <div class="lanyard-hook"></div>
+            <div class="lanyard"></div>
+            <div class="id-card max-w-sm">
+              <div class="photo-frame mb-6">
+                <img src="assets/imgs/pp.png" alt="Erlan Irhab Ghalib" class="w-full h-auto" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23222%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%23fff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EErlan Irhab Ghalib%3C/text%3E%3C/svg%3E'">
+              </div>
+              <div class="text-center space-y-2 border-t-2 border-white/20 pt-4">
+                <div class="text-xs uppercase tracking-widest text-gray-400">Professional ID</div>
+                <h3 class="text-2xl font-bold serif">Erlan Irhab Ghalib</h3>
+                <p class="text-sm text-gray-400">Software Engineer • Cloud Specialist</p>
+                <div class="flex justify-center gap-2 pt-4">
+                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span class="text-xs uppercase tracking-wider text-gray-400">Available for Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side - Introduction -->
+        <div class="reveal space-y-8">
+          <div>
+            <div class="text-sm uppercase tracking-widest text-gray-400 mb-4">Fresh Graduate • GPA 3.92/4.00</div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 serif leading-tight">
+              Building Scalable
+              <span class="stroke-text block">Solutions</span>
+            </h1>
+            <p class="text-xl text-gray-400 leading-relaxed">
+              Fresh graduate from <span class="text-white font-semibold">Diponegoro University</span> with hands-on experience in cloud infrastructure, backend development, and machine learning. Specialized in building enterprise-grade solutions using modern technologies.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-6">
+            <div class="stat-box text-center p-4 border border-white/20">
+              <div class="text-4xl font-bold serif mb-2">3.92</div>
+              <div class="text-xs uppercase tracking-wider text-gray-400">GPA</div>
+            </div>
+            <div class="stat-box text-center p-4 border border-white/20">
+              <div class="text-4xl font-bold serif mb-2">5+</div>
+              <div class="text-xs uppercase tracking-wider text-gray-400">Projects</div>
+            </div>
+            <div class="stat-box text-center p-4 border border-white/20">
+              <div class="text-4xl font-bold serif mb-2">4</div>
+              <div class="text-xs uppercase tracking-wider text-gray-400">Companies</div>
+            </div>
+          </div>
+
+          <div class="flex gap-6">
+            <a href="#contact" class="magnetic px-8 py-4 bg-white text-black hover:bg-transparent hover:text-white border-2 border-white transition-all duration-300 uppercase tracking-wider text-sm font-semibold">
+              Get In Touch
+            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1dU9JjTZWZMaRAflMsI0UWFnQenhB6vMs" class="magnetic px-8 py-4 border-2 border-white hover:bg-white hover:text-black transition-all duration-300 uppercase tracking-wider text-sm font-semibold">
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+      <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Section -->
+  <section class="py-12 border-y border-white/10 bg-white text-black">
+    <div class="marquee">
+      <div class="marquee-content">
+        <span class="text-4xl font-bold">CLOUD COMPUTING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">BACKEND DEVELOPMENT</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">DATA ENGINEERING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">MACHINE LEARNING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">IOT SOLUTIONS</span>
+        <span class="text-4xl">•</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span class="text-4xl font-bold">CLOUD COMPUTING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">BACKEND DEVELOPMENT</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">DATA ENGINEERING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">MACHINE LEARNING</span>
+        <span class="text-4xl">•</span>
+        <span class="text-4xl font-bold">IOT SOLUTIONS</span>
+        <span class="text-4xl">•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-32 px-6 grid-bg">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-400 mb-4">Professional Profile</div>
+        <h2 class="text-5xl md:text-6xl font-bold serif mb-6">
+          About <span class="stroke-text">Me</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="reveal space-y-6">
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Fresh graduate of <span class="text-white font-semibold">Informatics from Diponegoro University</span> with practical experience as a software developer, data analyst, and machine learning enthusiast.
+          </p>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Proficient in <span class="text-white font-semibold">Python, JavaScript, PHP</span>, and skilled in cloud computing platforms such as <span class="text-white font-semibold">GCP and AWS</span>. Strong expertise in backend development, API design, data analysis, and writing efficient queries using SQL databases.
+          </p>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Experienced in building scalable, cloud-native solutions and passionate about applying technology to solve complex problems. Eager to contribute technical skills and adaptability within dynamic IT teams.
+          </p>
+        </div>
+
+        <div class="reveal space-y-6">
+          <div class="border-l-4 border-white pl-6">
+            <h3 class="text-2xl font-bold serif mb-4">Core Competencies</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-start gap-3">
+                <span class="text-white mt-1">▪</span>
+                <span>Cloud Infrastructure & DevOps (AWS, GCP, Docker)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-white mt-1">▪</span>
+                <span>Backend Development (Laravel, Express.js, Flask)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-white mt-1">▪</span>
+                <span>Database Management (SQL Server, PostgreSQL, Oracle)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-white mt-1">▪</span>
+                <span>Data Engineering & ETL Pipelines (Apache Airflow, dbt)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-white mt-1">▪</span>
+                <span>IoT & Edge Computing (NVIDIA Jetson, Sensors)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="border border-white/20 p-6">
+            <h3 class="text-xl font-bold mb-4">Location & Availability</h3>
+            <div class="space-y-2 text-gray-300">
+              <div class="flex justify-between">
+                <span>Location</span>
+                <span class="text-white">Bogor, Indonesia</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Status</span>
+                <span class="text-green-400">Available</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Work Type</span>
+                <span class="text-white">Full-time / Hybrid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-32 px-6 bg-white text-black">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-600 mb-4">Professional Journey</div>
+        <h2 class="text-5xl md:text-6xl font-bold serif">
+          Work <span class="stroke-text" style="-webkit-text-stroke-color: #000;">Experience</span>
+        </h2>
+      </div>
+
+      <div class="space-y-12">
+        <!-- PT Bukaka -->
+        <div class="reveal timeline-item" style="border-left-color: #000;">
+          <div class="mb-4 flex items-center gap-4">
+            <img src="https://media.licdn.com/dms/image/v2/C560BAQH3wfnJqEqGhw/company-logo_200_200/company-logo_200_200/0/1630626237498/pt_bukaka_teknik_utama_tbk_logo?e=1742428800&v=beta&t=dKJnZZDMkPvXl5gxFyJxr8Jh5eGJBHJxJLKJBHJxJBH" alt="Bukaka" class="w-12 h-12 object-contain bg-white p-2 rounded border border-black" onerror="this.style.display='none'">
+            <div>
+              <span class="text-sm font-bold uppercase tracking-wider bg-black text-white px-3 py-1">Jul 2025 - Present</span>
+              <span class="text-green-600 text-sm font-semibold ml-3">● Current Position</span>
+            </div>
+          </div>
+          <h3 class="text-3xl font-bold serif mb-2">Management Trainee</h3>
+          <div class="text-xl text-gray-600 mb-4">PT Bukaka Teknik Utama, Tbk • Bogor, Indonesia</div>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Developed integrated system for Delivery Orders, Bills of Lading (SIPB), Packing Lists, and Shipment Tracking using <strong>Laravel, Tailwind CSS, and MS SQL Server</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Optimized angle iron plate scrap reduction using <strong>FFD algorithm in Python</strong>, achieving waste reduction to <strong>less than 10%</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Architected scalable <strong>ETL pipeline using Apache Airflow and dbt</strong>, optimizing data extraction from Oracle Fusion via SOAP API</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Helios -->
+        <div class="reveal timeline-item" style="border-left-color: #000;">
+          <div class="mb-4 flex items-center gap-4">
+            <img src="https://media.licdn.com/dms/image/v2/C510BAQEQ7W8yN8Y_5A/company-logo_200_200/company-logo_200_200/0/1631375016585?e=1742428800&v=beta&t=dKJnZZDMkPvXl5gxFyJxr8Jh5eGJBHJxJLKJBHJxJBH" alt="Helios" class="w-12 h-12 object-contain bg-white p-2 rounded border border-black" onerror="this.style.display='none'">
+            <span class="text-sm font-bold uppercase tracking-wider bg-black text-white px-3 py-1">Apr 2025 - Jun 2025</span>
+          </div>
+          <h3 class="text-3xl font-bold serif mb-2">Cloud Infrastructure Engineer</h3>
+          <div class="text-xl text-gray-600 mb-4">PT Helios Informatika Nusantara (CTI Group) • Jakarta, Indonesia</div>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Architected secure <strong>AWS infrastructure</strong> integrating S3 within VPC, eliminating NAT Gateways to <strong>enhance security and reduce costs</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Developed SOPs for <strong>Data Encryption and AWS Account Governance</strong> aligning with AWS security standards</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Applied <strong>IAM best practices, MFA enforcement, and CloudWatch monitoring</strong> for continuous compliance</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kalbe Farma -->
+        <div class="reveal timeline-item" style="border-left-color: #000;">
+          <div class="mb-4 flex items-center gap-4">
+            <img src="https://media.licdn.com/dms/image/v2/C560BAQGGqN8vKGf56A/company-logo_200_200/company-logo_200_200/0/1631322824735?e=1742428800&v=beta&t=dKJnZZDMkPvXl5gxFyJxr8Jh5eGJBHJxJLKJBHJxJBH" alt="Kalbe" class="w-12 h-12 object-contain bg-white p-2 rounded border border-black" onerror="this.style.display='none'">
+            <span class="text-sm font-bold uppercase tracking-wider bg-black text-white px-3 py-1">Sep 2024 - Mar 2025</span>
+          </div>
+          <h3 class="text-3xl font-bold serif mb-2">IoT Engineer Intern</h3>
+          <div class="text-xl text-gray-600 mb-4">PT Kalbe Farma, Tbk • Jakarta, Indonesia</div>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Prototyped real-time defect detection system using <strong>NVIDIA Jetson Orin Nano</strong> for live crack detection on packaging</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Developed <strong>Python backend with Supabase</strong>, automating logging and transfer of <strong>~500 defect images to cloud storage</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Built PM sensor system cutting operator adjustment time by <strong>30%</strong> and improving powder consistency</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bangkit Academy -->
+        <div class="reveal timeline-item" style="border-left-color: #000;">
+          <div class="mb-4 flex items-center gap-4">
+            <img src="https://storage.googleapis.com/kampusmerdeka_kemdikbud_go_id/mitra/mitra_af66db2e-0997-4f28-bcfe-574ba8c149f1.png" alt="Bangkit" class="w-12 h-12 object-contain bg-white p-2 rounded border border-black" onerror="this.style.display='none'">
+            <span class="text-sm font-bold uppercase tracking-wider bg-black text-white px-3 py-1">Feb 2024 - Jul 2024</span>
+          </div>
+          <h3 class="text-3xl font-bold serif mb-2">Cloud Computing Cohort</h3>
+          <div class="text-xl text-gray-600 mb-4">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka • Online</div>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Achieved recognition as <strong>top 10% graduate</strong> in Cloud Computing Learning Path</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Selected among <strong>4,650 students of 57,000+ applicants</strong> for Bangkit Academy Program</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1">▪</span>
+              <span>Controlled project timelines ensuring <strong>100% adherence to milestones</strong></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-400 mb-4">Technical Expertise</div>
+        <h2 class="text-5xl md:text-6xl font-bold serif">
+          <span class="stroke-text">Skills</span> & Tools
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">01</div>
+          <h3 class="text-2xl font-bold mb-4">Programming Languages</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-12 h-12" title="Python">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-12 h-12" title="JavaScript">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-12 h-12" title="PHP">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-12 h-12" title="Java">
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>Python</span> <span>•</span>
+            <span>JavaScript</span> <span>•</span>
+            <span>PHP</span> <span>•</span>
+            <span>SQL</span>
+          </div>
+        </div>
+
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">02</div>
+          <h3 class="text-2xl font-bold mb-4">Cloud & DevOps</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="w-12 h-12 invert" title="AWS">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP" class="w-12 h-12" title="GCP">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-12 h-12" title="Docker">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" class="w-12 h-12" title="Nginx">
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>AWS</span> <span>•</span>
+            <span>GCP</span> <span>•</span>
+            <span>Docker</span> <span>•</span>
+            <span>Git</span>
+          </div>
+        </div>
+
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">03</div>
+          <h3 class="text-2xl font-bold mb-4">Databases</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-12 h-12" title="MySQL">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="w-12 h-12" title="PostgreSQL">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle" class="w-12 h-12" title="Oracle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server" class="w-12 h-12" title="SQL Server">
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>MySQL</span> <span>•</span>
+            <span>PostgreSQL</span> <span>•</span>
+            <span>Oracle</span> <span>•</span>
+            <span>SQL Server</span>
+          </div>
+        </div>
+
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">04</div>
+          <h3 class="text-2xl font-bold mb-4">Frameworks</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="w-12 h-12" title="Laravel">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" class="w-12 h-12 invert" title="Express.js">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" class="w-12 h-12 invert" title="Flask">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind" class="w-12 h-12" title="TailwindCSS">
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>Laravel</span> <span>•</span>
+            <span>Express.js</span> <span>•</span>
+            <span>Flask</span> <span>•</span>
+            <span>Tailwind</span>
+          </div>
+        </div>
+
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">05</div>
+          <h3 class="text-2xl font-bold mb-4">Data Engineering</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-12 h-12" title="Apache Airflow">
+            <svg class="w-12 h-12" viewBox="0 0 256 256" fill="white" title="dbt">
+              <path d="M128 0C57.308 0 0 57.307 0 128s57.308 128 128 128 128-57.307 128-128S198.692 0 128 0zm0 243.2C70.562 243.2 12.8 185.438 12.8 128S70.562 12.8 128 12.8 243.2 70.562 243.2 128 185.438 243.2 128 243.2z"/>
+            </svg>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" class="w-12 h-12" title="Pandas">
+            <svg class="w-12 h-12" viewBox="0 0 24 24" fill="white" title="Power BI">
+              <path d="M10.5 0h3v24h-3V0zM6 6h3v18H6V6zm9 0h3v18h-3V6z"/>
+            </svg>
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>Airflow</span> <span>•</span>
+            <span>dbt</span> <span>•</span>
+            <span>ETL</span> <span>•</span>
+            <span>Power BI</span>
+          </div>
+        </div>
+
+        <div class="reveal card-3d border-2 border-white p-8">
+          <div class="text-5xl font-bold serif mb-6">06</div>
+          <h3 class="text-2xl font-bold mb-4">Testing & Tools</h3>
+          <div class="grid grid-cols-4 gap-4 mb-4">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" class="w-12 h-12" title="Postman">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" alt="Selenium" class="w-12 h-12" title="Selenium">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-12 h-12" title="Git">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="w-12 h-12" title="Figma">
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+            <span>Postman</span> <span>•</span>
+            <span>Selenium</span> <span>•</span>
+            <span>Git</span> <span>•</span>
+            <span>Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-32 px-6 bg-white text-black">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-600 mb-4">Portfolio Showcase</div>
+        <h2 class="text-5xl md:text-6xl font-bold serif">
+          Featured <span class="stroke-text" style="-webkit-text-stroke-color: #000;">Projects</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project 1 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2025</div>
+          <h3 class="text-3xl font-bold serif mb-4">ETL Pipeline Architecture</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Architected scalable ETL pipeline using Apache Airflow and dbt, revolutionizing data extraction from Oracle Fusion via SOAP API with centralized staging in SQL Server.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Airflow</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">dbt</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">SOAP API</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">SQL Server</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2025</div>
+          <h3 class="text-3xl font-bold serif mb-4">Integrated Logistics System</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Developed comprehensive system for Delivery Orders, Bills of Lading, Packing Lists with QR-based digital approval, photo proof, and multi-format exports using Laravel and MS SQL Server.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Laravel</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">MS SQL</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">QR Code</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Tailwind</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2025</div>
+          <h3 class="text-3xl font-bold serif mb-4">AI-Powered CV Analysis</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Built AI-based CV analysis API using Flask and OpenAI for resume-job matching. Integrated NLP for semantic scoring and deployed production-ready API on Vercel.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Flask</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">OpenAI API</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">NLP</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Vercel</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2025</div>
+          <h3 class="text-3xl font-bold serif mb-4">IoT Defect Detection</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Prototyped real-time crack detection using webcams, thermal imaging, and ML models on NVIDIA Jetson Orin Nano with automated cloud logging of 500+ defect images.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Jetson Nano</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Python</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">ML</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Supabase</span>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2025</div>
+          <h3 class="text-3xl font-bold serif mb-4">Secure AWS Architecture</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Designed secure AWS infrastructure with S3 in VPC, VPC endpoints for private connectivity, CloudWatch monitoring, eliminating NAT gateways to enhance security and reduce costs.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">AWS</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">VPC</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">S3</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">CloudWatch</span>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="reveal card-3d border-2 border-black p-8 group hover:bg-black hover:text-white transition-all">
+          <div class="text-sm uppercase tracking-wider text-gray-500 group-hover:text-gray-400 mb-2">2024</div>
+          <h3 class="text-3xl font-bold serif mb-4">Tanamify Backend API</h3>
+          <p class="text-gray-700 group-hover:text-gray-300 mb-6">
+            Developed backend API for ML-based crop optimization app, managing project delivery and ensuring alignment with stakeholder goals for agricultural technology solution.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">Express.js</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">PostgreSQL</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">ML Integration</span>
+            <span class="text-xs px-3 py-1 border border-black group-hover:border-white">GCP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-400 mb-4">Recognition & Certifications</div>
+        <h2 class="text-5xl md:text-6xl font-bold serif">
+          <span class="stroke-text">Achievements</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">🎓</div>
+          <h3 class="text-xl font-bold serif mb-2">Dean's Award</h3>
+          <p class="text-gray-400 text-sm mb-4">Faculty of Science and Mathematics, Diponegoro University</p>
+          <p class="text-xs text-gray-500">15 Best Graduates of 124th Graduation Ceremony</p>
+        </div>
+
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">☁️</div>
+          <h3 class="text-xl font-bold serif mb-2">Bangkit Graduate</h3>
+          <p class="text-gray-400 text-sm mb-4">Cloud Computing with Distinction</p>
+          <p class="text-xs text-gray-500">Top 10% Graduate • Google, Tokopedia, Gojek, Traveloka</p>
+        </div>
+
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">🏆</div>
+          <h3 class="text-xl font-bold serif mb-2">Top Performer</h3>
+          <p class="text-gray-400 text-sm mb-4">English Proficiency</p>
+          <p class="text-xs text-gray-500">Top 1,000 performers in English Courses & Tests</p>
+        </div>
+
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">📜</div>
+          <h3 class="text-xl font-bold serif mb-2">ACA Cloud Computing</h3>
+          <p class="text-gray-400 text-sm mb-4">Alibaba Cloud Academy</p>
+          <p class="text-xs text-gray-500">Cloud Computing Certification</p>
+        </div>
+
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">💾</div>
+          <h3 class="text-xl font-bold serif mb-2">Oracle Database</h3>
+          <p class="text-gray-400 text-sm mb-4">Oracle Academy</p>
+          <p class="text-xs text-gray-500">Database Design & PL/SQL Programming</p>
+        </div>
+
+        <div class="reveal card-3d bg-gradient-to-br from-gray-900 to-black border-2 border-white p-8">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold serif mb-2">MS Power Platform</h3>
+          <p class="text-gray-400 text-sm mb-4">Microsoft Certification</p>
+          <p class="text-xs text-gray-500">PL-400T00-A Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-32 px-6 bg-white text-black">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal text-center mb-16">
+        <div class="text-sm uppercase tracking-widest text-gray-600 mb-4">Let's Connect</div>
+        <h2 class="text-5xl md:text-7xl font-bold serif mb-6">
+          Get In <span class="stroke-text" style="-webkit-text-stroke-color: #000;">Touch</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Open to opportunities in cloud engineering, backend development, and data engineering roles. Let's build something amazing together.
+        </p>
+      </div>
+
+      <div class="reveal grid md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6 border-2 border-black hover:bg-black hover:text-white transition-all group">
+          <div class="text-4xl mb-4">📧</div>
+          <h3 class="font-bold serif text-lg mb-2">Email</h3>
+          <a href="mailto:erlanig221@gmail.com" class="text-sm text-gray-600 group-hover:text-gray-300 break-all">erlanig221@gmail.com</a>
+        </div>
+
+        <div class="text-center p-6 border-2 border-black hover:bg-black hover:text-white transition-all group">
+          <div class="text-4xl mb-4">📱</div>
+          <h3 class="font-bold serif text-lg mb-2">Phone</h3>
+          <a href="tel:+6282116650025" class="text-sm text-gray-600 group-hover:text-gray-300">+62 821-1665-0025</a>
+        </div>
+
+        <div class="text-center p-6 border-2 border-black hover:bg-black hover:text-white transition-all group">
+          <div class="text-4xl mb-4">📍</div>
+          <h3 class="font-bold serif text-lg mb-2">Location</h3>
+          <p class="text-sm text-gray-600 group-hover:text-gray-300">Bogor, Indonesia</p>
+        </div>
+      </div>
+
+      <div class="reveal flex flex-col md:flex-row gap-6 justify-center mb-12">
+        <a href="mailto:erlanig221@gmail.com" class="magnetic text-center px-12 py-6 bg-black text-white hover:bg-transparent hover:text-black border-2 border-black transition-all uppercase tracking-wider font-bold">
+          Send Email
+        </a>
+        <a href="https://linkedin.com/in/erlanig" target="_blank" class="magnetic text-center px-12 py-6 border-2 border-black hover:bg-black hover:text-white transition-all uppercase tracking-wider font-bold">
+          LinkedIn Profile
+        </a>
+      </div>
+
+      <div class="reveal flex justify-center gap-6">
+        <a href="https://linkedin.com/in/erlanig" target="_blank" class="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.23 8.67h4.54V24H.23V8.67zM8.66 8.67h4.35v2.1h.06c.61-1.15 2.11-2.36 4.35-2.36 4.65 0 5.5 3.07 5.5 7.06V24h-4.54v-7.6c0-1.82-.03-4.16-2.54-4.16-2.55 0-2.94 1.99-2.94 4.04V24H8.66V8.67z"/>
+          </svg>
+        </a>
+
+        <a href="https://github.com/erlanig" target="_blank" class="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577v-2.023c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.204.084 1.838 1.235 1.838 1.235 1.07 1.834 2.809 1.304 3.495.997.108-.774.418-1.304.762-1.603-2.665-.303-5.466-1.333-5.466-5.933 0-1.31.468-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.552 3.294-1.23 3.294-1.23.653 1.653.242 2.873.119 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.805 5.625-5.475 5.922.43.372.823 1.103.823 2.222v3.293c0 .32.217.694.825.576C20.565 21.796 24 17.303 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+
+        <a href="https://instagram.com/erlanig_" target="_blank" class="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
+            <path d="M16 11.37a4 4 0 11-7.998-.001 4 4 0 017.998.001z" stroke-width="2"></path>
+            <line x1="17.5" y1="6.5" x2="17.5" y2="6.501" stroke-width="2"></line>
+          </svg>
+        </a>
+
+        <a href="https://bit.ly/portofolio-erlanig2025" target="_blank" class="w-12 h-12 border-2 border-black flex items-center justify-center hover:bg-black hover:text-white transition-all">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <div class="text-3xl font-bold serif mb-2">EIG</div>
+          <p class="text-sm text-gray-400">Building the future, one line of code at a time.</p>
+        </div>
+        
+        <div class="text-center">
+          <p class="text-sm text-gray-400">© 2025 Erlan Irhab Ghalib</p>
+          <p class="text-xs text-gray-500 mt-1">All rights reserved</p>
+        </div>
+
+        <div class="flex gap-4">
+          <a href="#about" class="text-sm text-gray-400 hover:text-white transition">About</a>
+          <a href="#experience" class="text-sm text-gray-400 hover:text-white transition">Work</a>
+          <a href="#contact" class="text-sm text-gray-400 hover:text-white transition">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Reveal Animation
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(reveal => revealObserver.observe(reveal));
+
+    // Magnetic Button Effect
+    const magnetics = document.querySelectorAll('.magnetic');
+    magnetics.forEach(magnetic => {
+      magnetic.addEventListener('mousemove', (e) => {
+        const rect = magnetic.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        magnetic.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      
+      magnetic.addEventListener('mouseleave', () => {
+        magnetic.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    let mobileMenuOpen = false;
+    
+    menuBtn.addEventListener('click', () => {
+      mobileMenuOpen = !mobileMenuOpen;
+      if (mobileMenuOpen) {
+        // Create mobile menu
+        const mobileMenu = document.createElement('div');
+        mobileMenu.id = 'mobileMenu';
+        mobileMenu.className = 'fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8';
+        mobileMenu.innerHTML = `
+          <a href="#about" class="text-3xl hover:text-gray-400 transition">About</a>
+          <a href="#experience" class="text-3xl hover:text-gray-400 transition">Experience</a>
+          <a href="#skills" class="text-3xl hover:text-gray-400 transition">Skills</a>
+          <a href="#projects" class="text-3xl hover:text-gray-400 transition">Projects</a>
+          <a href="#achievements" class="text-3xl hover:text-gray-400 transition">Achievements</a>
+          <a href="#contact" class="text-3xl hover:text-gray-400 transition">Contact</a>
+        `;
+        document.body.appendChild(mobileMenu);
+        
+        // Close menu when clicking links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.remove();
+            mobileMenuOpen = false;
+          });
+        });
+      } else {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) mobileMenu.remove();
+      }
+    });
+  </script>
+</body>
+</html>

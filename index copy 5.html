@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erlan Irhab Ghalib | Industrial Tech & Cloud</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --font-main: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      --font-headline: "Space Grotesk", system-ui, sans-serif;
+      --bg-main: #020617;
+      --accent-sky: #38bdf8;
+      --accent-industrial: #f97316;
+      --accent-mu: #da291c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    .font-headline {
+      font-family: var(--font-headline);
+    }
+
+    /* Top glass navbar */
+    .nav-blur {
+      backdrop-filter: blur(18px);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.94), rgba(2,6,23,0.96));
+      border-bottom: 1px solid rgba(148,163,184,0.32);
+    }
+
+    /* Background grid */
+    .grid-bg::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(30,64,175,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,64,175,0.12) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    /* Hero industrial orbit */
+    .hero-orbit {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148,163,184,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .hero-orbit::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(56,189,248,0.12), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(249,115,22,0.16), transparent 55%);
+      filter: blur(12px);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .orbit-pill {
+      position: absolute;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.96);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+    }
+
+    .orbit-pill span.dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-industrial);
+      box-shadow: 0 0 0 4px rgba(249,115,22,0.34);
+    }
+
+    .orbit-item-1 { top: 6%; left: -8%; }
+    .orbit-item-2 { bottom: 2%; right: -10%; }
+    .orbit-item-3 { bottom: 46%; right: -10%; }
+
+    .hero-avatar {
+      width: 155px;
+      height: 155px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 0 8px rgba(7,89,133,0.25);
+      background: #020617;
+    }
+
+    /* Stroke text */
+    .stroke-text {
+      -webkit-text-stroke: 1px currentColor;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Simpler cards */
+    .card-shell {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .card-shell:hover {
+      transform: translateY(-4px) translateZ(0);
+      border-color: rgba(56,189,248,0.9);
+      box-shadow: 0 22px 45px rgba(15,23,42,0.9);
+      background-color: #020617;
+    }
+
+    .card-shell-light {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(15,23,42,0.08);
+      background: #f9fafb;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card-shell-light:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37,99,235,0.7);
+      box-shadow: 0 18px 35px rgba(15,23,42,0.22);
+    }
+
+    .section-divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(to right, transparent, rgba(148,163,184,0.7), transparent);
+      max-width: 66rem;
+      margin: 0 auto;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal-show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Skills chips */
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .skill-chip span.bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-sky);
+    }
+
+    .skill-chip-alt {
+      background: #e5e7eb;
+      color: #020617;
+      border-color: #cbd5f5;
+    }
+
+    /* Journey line minimal */
+    .journey-line {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .journey-line::before {
+      content: "";
+      position: absolute;
+      left: 0.95rem;
+      top: 0.6rem;
+      bottom: 0.6rem;
+      width: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #38bdf8, #f97316, #22c55e, #6366f1);
+      opacity: 0.4;
+    }
+
+    .journey-dot {
+      position: absolute;
+      left: 0.5rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 999px;
+      border: 2px solid #020617;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #38bdf8);
+      box-shadow:
+        0 0 0 4px rgba(56,189,248,0.21),
+        0 8px 16px rgba(15,23,42,0.5);
+    }
+
+    /* MU fun fact pitch */
+    .pitch-bg {
+      background-image: linear-gradient(90deg, rgba(15,118,110,0.09) 0, transparent 55%);
+    }
+
+    .badge-mu {
+      border-radius: 999px;
+      padding: 0.22rem 0.8rem;
+      border: 1px solid rgba(248,113,113,0.7);
+      background: rgba(220,38,38,0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fecaca;
+    }
+
+    .badge-mu span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-mu);
+      box-shadow: 0 0 0 4px rgba(127,29,29,0.6);
+    }
+
+    /* Mobile menu transition */
+    .mobile-menu-enter {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    .mobile-menu-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+  </style>
+</head>
+<body class="text-slate-50 grid-bg">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 inset-x-0 z-40 nav-blur">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-500 via-emerald-400 to-amber-400 flex items-center justify-center text-xs font-headline font-semibold text-slate-950 shadow-lg shadow-sky-500/40">
+          E
+        </div>
+        <div class="flex flex-col">
+          <span class="font-headline text-[11px] sm:text-xs tracking-[0.25em] uppercase text-slate-200">
+            Erlan Irhab Ghalib
+          </span>
+          <span class="hidden sm:inline text-[10px] text-slate-400">
+            Industrial Tech · Cloud · Data
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-7 text-[11px] font-medium tracking-[0.22em] uppercase text-slate-300">
+        <a href="#about" class="hover:text-sky-400 transition-colors">About</a>
+        <a href="#experience" class="hover:text-sky-400 transition-colors">Experience</a>
+        <a href="#skills" class="hover:text-sky-400 transition-colors">Skills</a>
+        <a href="#projects" class="hover:text-sky-400 transition-colors">Projects</a>
+        <a href="#achievements" class="hover:text-sky-400 transition-colors">Awards</a>
+        <a href="#contact" class="hover:text-sky-400 transition-colors">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button
+        id="menuBtn"
+        class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-700 text-slate-200 hover:bg-slate-900 transition-colors"
+        aria-label="Toggle navigation"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-black/95 border-t border-slate-800">
+      <div class="px-6 py-4 flex flex-col gap-3 text-[11px] font-medium tracking-[0.22em] uppercase text-slate-200">
+        <a href="#about" class="py-1 hover:text-sky-400 transition-colors">About</a>
+        <a href="#experience" class="py-1 hover:text-sky-400 transition-colors">Experience</a>
+        <a href="#skills" class="py-1 hover:text-sky-400 transition-colors">Skills</a>
+        <a href="#projects" class="py-1 hover:text-sky-400 transition-colors">Projects</a>
+        <a href="#achievements" class="py-1 hover:text-sky-400 transition-colors">Awards</a>
+        <a href="#contact" class="py-1 hover:text-sky-400 transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="pt-20">
+
+    <!-- HERO -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 lg:py-22">
+      <div class="grid lg:grid-cols-[1.4fr,1fr] gap-12 lg:gap-16 items-center">
+        <!-- Left -->
+        <div class="reveal space-y-7">
+          <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-full border border-slate-700/70 bg-slate-950/70 text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-slate-300">
+            <span>Fresh Graduate · GPA 3.92 / 4.00</span>
+            <span class="w-[1px] h-3 bg-slate-700 hidden sm:inline"></span>
+            <span class="text-sky-400">Industrial EPC · Cloud · Backend · Data</span>
+            <span class="inline-flex items-center gap-1 text-[10px] bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/40">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Open to Opportunities
+            </span>
+          </div>
+
+          <div>
+            <h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl xl:text-[3.9rem] font-semibold leading-tight">
+              Turning
+              <span class="text-sky-400">industrial operations</span><br/>
+              into <span class="stroke-text text-slate-100">scalable systems</span>
+            </h1>
+            <p class="mt-5 text-sm sm:text-base md:text-[15px] text-slate-300 max-w-xl leading-relaxed">
+              Fresh graduate from <span class="font-semibold text-slate-50">Informatics, Diponegoro University</span>,
+              currently working in <span class="font-semibold">Industrial EPC (PT Bukaka Teknik Utama Tbk)</span>.
+              I design and build cloud-ready backends, data pipelines, and IoT solutions that
+              make factories, logistics, and operations run smoother &amp; smarter.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 max-w-md">
+            <div class="card-shell px-4 py-4 text-center">
+              <div class="font-headline text-2xl sm:text-3xl font-semibold">3.92</div>
+              <p class="mt-1 text-[11px] tracking-[0.22em] uppercase text-slate-400">GPA</p>
+            </div>
+            <div class="card-shell px-4 py-4 text-center">
+              <div class="font-headline text-2xl sm:text-3xl font-semibold">5+</div>
+              <p class="mt-1 text-[11px] tracking-[0.22em] uppercase text-slate-400">Industry Projects</p>
+            </div>
+            <div class="card-shell px-4 py-4 text-center">
+              <div class="font-headline text-2xl sm:text-3xl font-semibold">5+</div>
+              <p class="mt-1 text-[11px] tracking-[0.22em] uppercase text-slate-400">Companies</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-sky-500 text-sm font-headline font-semibold tracking-[0.16em] uppercase text-slate-950 hover:bg-sky-400 transition-colors shadow-lg shadow-sky-500/35"
+            >
+              Contact for Interview
+            </a>
+            <a
+              href="https://drive.google.com/uc?export=download&id=1dU9JjTZWZMaRAflMsI0UWFnQenhB6vMs"
+              class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-slate-600 text-sm font-headline font-semibold tracking-[0.16em] uppercase text-slate-100 hover:border-sky-400 hover:text-sky-300 transition-colors"
+            >
+              Download CV (PDF)
+            </a>
+          </div>
+
+          <!-- Skill chips row -->
+          <div class="flex flex-wrap gap-2 mt-1">
+            <div class="skill-chip">
+              <span class="bullet"></span>
+              Cloud Computing
+            </div>
+            <div class="skill-chip">
+              <span class="bullet"></span>
+              Backend APIs
+            </div>
+            <div class="skill-chip">
+              <span class="bullet"></span>
+              Data Pipelines
+            </div>
+            <div class="skill-chip">
+              <span class="bullet"></span>
+              IoT &amp; Edge
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Orbit + Avatar -->
+        <div class="reveal flex justify-center lg:justify-end">
+          <div class="hero-orbit">
+            <div class="hero-avatar overflow-hidden">
+              <img
+                src="assets/imgs/pp.png"
+                alt="Erlan Irhab Ghalib"
+                class="w-full h-full object-cover"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%230f172a%22 width=%22400%22 height=%22400%22/%3E%3Ctext fill=%22%23e5e7eb%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EErlan%20Irhab%20Ghalib%3C/text%3E%3C/svg%3E'"
+              >
+            </div>
+
+            <div class="orbit-pill orbit-item-1">
+              <span class="dot"></span>
+              Industrial EPC
+            </div>
+            <div class="orbit-pill orbit-item-2">
+              <span class="dot" style="background:var(--accent-sky); box-shadow:0 0 0 4px rgba(56,189,248,0.35);"></span>
+              Cloud &amp; Data
+            </div>
+            <div class="orbit-pill orbit-item-3">
+              <span class="dot" style="background:#22c55e; box-shadow:0 0 0 4px rgba(34,197,94,0.3);"></span>
+              Backend &amp; APIs
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="section-divider"></div>
+
+    <!-- ABOUT + FUN FACT -->
+    <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+      <div class="grid md:grid-cols-[1.6fr,1.1fr] gap-10 lg:gap-14 items-start">
+        <div class="reveal space-y-5 text-sm sm:text-base text-slate-200 leading-relaxed">
+          <div>
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-3">
+              Professional Profile
+            </p>
+            <h2 class="font-headline text-3xl sm:text-4xl font-semibold mb-2">
+              About <span class="stroke-text text-slate-100">Me</span>
+            </h2>
+          </div>
+
+          <p>
+            Fresh graduate of <span class="font-semibold">Informatics, Diponegoro University</span> with practical
+            experience as a software engineer, cloud &amp; data enthusiast, and IoT engineer for
+            manufacturing, automotive, healthcare, and EPC environments.
+          </p>
+          <p>
+            Comfortable working across the stack: from <span class="font-semibold">backend APIs</span> using
+            <span class="font-semibold">Laravel, Express.js, Flask</span>, to <span class="font-semibold">cloud
+            infrastructure</span> on <span class="font-semibold">GCP, AWS</span>, to <span class="font-semibold">
+            data pipelines</span> with <span class="font-semibold">Airflow, dbt</span> and SQL databases.
+          </p>
+          <p>
+            I enjoy translating messy real-world processes (logistics, production, purchase requests) into
+            <span class="font-semibold">clear, measurable, and automated systems</span>. I’m eager to grow in roles
+            such as <span class="font-semibold">Backend Engineer, Cloud Engineer, Data Engineer,</span> or
+            <span class="font-semibold">Industrial Tech / Digitalization Engineer</span>.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-4">
+            <div class="card-shell p-4">
+              <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-1.5">
+                Location &amp; Work
+              </p>
+              <p class="text-sm text-slate-200 flex justify-between">
+                <span>Based in</span><span class="font-medium">Bogor, Indonesia</span>
+              </p>
+              <p class="text-sm text-slate-200 flex justify-between mt-1.5">
+                <span>Work Type</span><span class="font-medium">Full-time / Hybrid</span>
+              </p>
+            </div>
+            <div class="card-shell p-4 pitch-bg">
+              <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-1.5">
+                Current Industry
+              </p>
+              <p class="text-sm text-slate-200">
+                Management Trainee at <span class="font-semibold text-slate-50">PT Bukaka Teknik Utama Tbk</span>,
+                focusing on <span class="font-semibold">Industrial EPC, logistics &amp; angle-iron optimization</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fun fact + core competencies -->
+        <div class="space-y-5">
+          <div class="reveal card-shell p-5 sm:p-6">
+            <h3 class="font-headline text-lg font-semibold mb-3">
+              Core Competencies
+            </h3>
+            <ul class="space-y-2.5 text-sm text-slate-200">
+              <li>• Cloud Infrastructure &amp; DevOps (AWS, GCP, Docker)</li>
+              <li>• Backend Development (Laravel, Express.js, Flask, FastAPI)</li>
+              <li>• Database Management (SQL Server, PostgreSQL, Oracle)</li>
+              <li>• Data Engineering &amp; ETL Pipelines (Apache Airflow, dbt)</li>
+              <li>• IoT &amp; Edge Computing (NVIDIA Jetson, industrial sensors)</li>
+            </ul>
+          </div>
+
+          <!-- FUN FACT MU & ROONEY -->
+          <div class="reveal card-shell p-5 sm:p-6 border border-red-900/70 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-32 h-32 rounded-full"
+                 style="background: radial-gradient(circle at 30% 30%, rgba(239,68,68,0.8), transparent 60%); opacity:0.25;">
+            </div>
+            <div class="badge-mu mb-3 relative">
+              <span class="dot"></span>
+              Fun Fact
+            </div>
+            <h3 class="font-headline text-lg font-semibold mb-1">
+              Manchester United &amp; Rooney Fan
+            </h3>
+            <p class="text-sm text-slate-200 mb-2">
+              Outside of tech, I’m a big <span class="font-semibold">Manchester United</span> supporter —
+              especially the <span class="font-semibold">Wayne Rooney</span> era.
+            </p>
+            <p class="text-xs text-slate-400">
+              I like to bring that “Rooney mentality” into work: high work-rate, teamwork,
+              and always chasing that extra goal — whether it’s system performance,
+              process efficiency, or delivery quality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="bg-slate-50 text-slate-900 py-14 lg:py-18">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-8">
+          <p class="text-[11px] tracking-[0.22em] uppercase text-slate-500 mb-3">
+            Career Journey
+          </p>
+          <h2 class="font-headline text-3xl sm:text-4xl font-semibold">
+            Work <span class="stroke-text" style="-webkit-text-stroke-color:#020617;">Experience</span>
+          </h2>
+          <p class="text-sm sm:text-[15px] text-slate-600 mt-3 max-w-2xl">
+            From campus projects to enterprise-grade solutions in EPC, healthcare, automotive,
+            and cloud — consistently aligning technology with business operations.
+          </p>
+        </div>
+
+        <div class="journey-line space-y-8 text-sm sm:text-[15px] text-slate-800">
+
+          <!-- Bukaka -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Jul 2025 – Present · Industrial EPC
+              </span>
+              <span class="text-[10px] tracking-[0.22em] uppercase text-emerald-600 inline-flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                Current Role
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://www.disnakerja.com/wp-content/uploads/2021/08/Bukaka-Teknik-Utama-Tbk.jpg"
+                    alt="Bukaka"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    Management Trainee
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    PT Bukaka Teknik Utama Tbk · Bogor, Indonesia
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Developed integrated system for Delivery Orders, Bills of Lading (SIPB), Packing Lists, and Shipment Tracking using <strong>Laravel, Tailwind CSS, and MS SQL Server</strong>.</li>
+                <li>▪ Optimized angle iron plate scrap reduction using <strong>FFD algorithm in Python</strong>, reducing waste to <strong>&lt; 10%</strong> for fabrication processes.</li>
+                <li>▪ Architected scalable <strong>ETL pipeline using Apache Airflow and dbt</strong>, streamlining data extraction from Oracle Fusion via SOAP API into SQL Server.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Helios -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Apr 2025 – Jun 2025 · Cloud
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://computradetech.com/wp-content/uploads/2021/11/helios-large.png"
+                    alt="Helios"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    Cloud Infrastructure Engineer
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    PT Helios Informatika Nusantara (CTI Group) · Jakarta, Indonesia
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Designed secure <strong>AWS infrastructure</strong> by placing S3 within VPC and leveraging VPC endpoints, eliminating NAT Gateways to <strong>improve security and reduce cost</strong>.</li>
+                <li>▪ Drafted SOPs for <strong>Data Encryption and AWS Account Governance</strong> aligned with AWS security standards.</li>
+                <li>▪ Applied <strong>IAM best practices, MFA enforcement, and CloudWatch monitoring</strong> for continuous compliance.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Kalbe -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Sep 2024 – Mar 2025 · IoT &amp; AI
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/pvyr08azklir2ba3ok1n?ik-sanitizeSvg=true"
+                    alt="Kalbe"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    IoT Engineer Intern
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    PT Kalbe Farma Tbk · Jakarta, Indonesia
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Prototyped real-time defect detection system using <strong>NVIDIA Jetson Orin Nano</strong> for live crack detection on packaging lines.</li>
+                <li>▪ Built <strong>Python backend with Supabase</strong>, automating logging and transfer of <strong>~500 defect images</strong> to cloud storage.</li>
+                <li>▪ Implemented PM sensor system that cut operator adjustment time by <strong>30%</strong> and improved milk powder consistency.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Bangkit -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Feb 2024 – Jul 2024 · Cloud
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://yt3.googleusercontent.com/0b3Ljhqw5VJpXwOaffzj5lwAfHHYa7fTfT32hjnZ3MMHyWu84IUfy4CTliMmY15f0k8i-wt7oA=s900-c-k-c0x00ffffff-no-rj"
+                    alt="Bangkit"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    Cloud Computing Cohort
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    Bangkit Academy · Online
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Graduated as <strong>Top 10%</strong> in Cloud Computing Learning Path.</li>
+                <li>▪ Selected among <strong>4,650 students</strong> from 57,000+ applicants.</li>
+                <li>▪ Managed capstone timelines with <strong>100% milestone completion</strong>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Aslab -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Feb 2024 – Jun 2024 · Teaching
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/id/2/2d/Undip.png"
+                    alt="UNDIP"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    Database Management Lab Assistant
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    Diponegoro University Laboratory · Semarang, Indonesia
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Led weekly lab sessions for 20+ students, improving <strong>SQL Server</strong> skills.</li>
+                <li>▪ Updated lab curriculum with new best practices and tools.</li>
+                <li>▪ Maintained lab infrastructure to ensure <strong>100% uptime</strong> during classes.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Rejeki Toyota -->
+          <article class="reveal relative">
+            <div class="journey-dot" style="top:0.6rem;"></div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="text-[10px] tracking-[0.22em] uppercase bg-slate-900 text-slate-100 px-3 py-1 rounded-full border border-slate-300/60">
+                Jan 2024 – Feb 2024 · Automotive
+              </span>
+            </div>
+            <div class="card-shell-light p-5 sm:p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 overflow-hidden">
+                  <img
+                    src="https://yt3.googleusercontent.com/ytc/AIdro_nt3vdbmX6fcRaiXl4kiRuv9qsjUJwhzOEg82oZDZCgu0E=s900-c-k-c0x00ffffff-no-rj"
+                    alt="Rejeki Toyota"
+                    class="w-full h-full object-contain"
+                    onerror="this.style.display='none'"
+                  >
+                </div>
+                <div>
+                  <h3 class="font-headline text-lg sm:text-xl font-semibold">
+                    Software Engineer Intern
+                  </h3>
+                  <p class="text-slate-500 text-xs sm:text-sm">
+                    Rejeki Toyota · Cirebon, Indonesia
+                  </p>
+                </div>
+              </div>
+              <ul class="space-y-2.5 text-slate-700">
+                <li>▪ Documented and designed an Integrated Purchase Request System using Oracle, improving process efficiency by <strong>30%</strong>.</li>
+                <li>▪ Built database structure and UI for 30+ internal users.</li>
+                <li>▪ Implemented multi-stage approval workflows to reduce processing time by <strong>10%</strong>.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+      <div class="reveal mb-8">
+        <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-3">
+          Technical Expertise
+        </p>
+        <h2 class="font-headline text-3xl sm:text-4xl font-semibold">
+          <span class="stroke-text text-slate-100">Skills</span> &amp; Tools
+        </h2>
+        <p class="text-sm sm:text-[15px] text-slate-400 mt-3 max-w-xl">
+          A compact view of tools I actually use in projects — tuned for industrial, cloud, and data scenarios.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 text-sm">
+        <!-- Column 1 -->
+        <div class="space-y-4">
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              Programming
+            </p>
+            <p class="font-headline text-lg mb-3 text-slate-100">
+              Backend-first mindset
+            </p>
+            <p class="text-slate-300 mb-3">
+              Building reliable backend services and APIs to support dashboards, mobile apps, and internal tools.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>Python</span>
+              <span class="skill-chip"><span class="bullet"></span>JavaScript</span>
+              <span class="skill-chip"><span class="bullet"></span>PHP</span>
+              <span class="skill-chip"><span class="bullet"></span>SQL</span>
+              <span class="skill-chip"><span class="bullet"></span>Java (basic)</span>
+            </div>
+          </div>
+
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              Frameworks
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>Laravel</span>
+              <span class="skill-chip"><span class="bullet"></span>Express.js</span>
+              <span class="skill-chip"><span class="bullet"></span>Flask</span>
+              <span class="skill-chip"><span class="bullet"></span>FastAPI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="space-y-4">
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              Cloud &amp; DevOps
+            </p>
+            <p class="font-headline text-lg mb-3 text-slate-100">
+              Production-grade cloud
+            </p>
+            <p class="text-slate-300 mb-3">
+              Architecting secure and cost-effective infrastructure while keeping deployment practical and maintainable.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>AWS</span>
+              <span class="skill-chip"><span class="bullet"></span>GCP</span>
+              <span class="skill-chip"><span class="bullet"></span>Docker</span>
+              <span class="skill-chip"><span class="bullet"></span>Nginx</span>
+              <span class="skill-chip"><span class="bullet"></span>Git</span>
+            </div>
+          </div>
+
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              Testing &amp; QA
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>Postman</span>
+              <span class="skill-chip"><span class="bullet"></span>Selenium</span>
+              <span class="skill-chip"><span class="bullet"></span>Katalon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="space-y-4">
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              Data &amp; Databases
+            </p>
+            <p class="font-headline text-lg mb-3 text-slate-100">
+              From OLTP to analytics
+            </p>
+            <p class="text-slate-300 mb-3">
+              Comfortable designing schemas and pipelines that support both operations and reporting.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>MySQL</span>
+              <span class="skill-chip"><span class="bullet"></span>PostgreSQL</span>
+              <span class="skill-chip"><span class="bullet"></span>Oracle</span>
+              <span class="skill-chip"><span class="bullet"></span>SQL Server</span>
+              <span class="skill-chip"><span class="bullet"></span>Airflow</span>
+              <span class="skill-chip"><span class="bullet"></span>dbt</span>
+              <span class="skill-chip"><span class="bullet"></span>Oracle APEX</span>
+            </div>
+          </div>
+
+          <div class="reveal card-shell p-5 sm:p-6">
+            <p class="font-headline text-xs tracking-[0.24em] uppercase text-slate-400 mb-2">
+              IoT &amp; ML
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip"><span class="bullet"></span>NVIDIA Jetson</span>
+              <span class="skill-chip"><span class="bullet"></span>Sensor integration</span>
+              <span class="skill-chip"><span class="bullet"></span>ML &amp; NLP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="bg-slate-50 text-slate-900 py-14 lg:py-18">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal mb-8">
+          <p class="text-[11px] tracking-[0.22em] uppercase text-slate-500 mb-3">
+            Portfolio Highlights
+          </p>
+          <h2 class="font-headline text-3xl sm:text-4xl font-semibold">
+            Featured <span class="stroke-text" style="-webkit-text-stroke-color:#020617;">Projects</span>
+          </h2>
+          <p class="text-sm sm:text-[15px] text-slate-600 mt-3 max-w-2xl">
+            Selected work that shows how I connect backend, cloud, data, and IoT to real
+            business needs — especially in industrial and operational contexts.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 text-sm">
+
+          <!-- Project 1 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2025 · Data Engineering
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              ETL Pipeline Architecture
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Architected scalable ETL pipeline using <strong>Apache Airflow</strong> and <strong>dbt</strong> for data
+              extraction from <strong>Oracle Fusion via SOAP API</strong> into <strong>SQL Server</strong>, enabling cleaner
+              reporting for management and finance.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Airflow</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">dbt</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Oracle Fusion</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">SQL Server</span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2025 · Industrial Logistics
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              Integrated Logistics System
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Built a system to manage Delivery Orders, Bills of Lading (SIPB), and Packing Lists with QR-based
+              approvals, photo proof, and multi-format exports using <strong>Laravel</strong> and
+              <strong>MS SQL Server</strong>.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Laravel</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">MS SQL</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">QR Code</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Tailwind</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2025 · AI &amp; Career
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              AI-Powered CV Analysis
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Built AI-based CV analysis API using <strong>Flask</strong> and <strong>OpenAI</strong> for resume–job matching,
+              using NLP for semantic scoring and deployed on <strong>Vercel</strong>.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Flask</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">OpenAI API</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">NLP</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Vercel</span>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2025 · IoT &amp; Quality
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              IoT Defect Detection
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Prototyped real-time crack detection using webcams, thermal imaging, and ML models on
+              <strong>NVIDIA Jetson Orin Nano</strong> with automated cloud logging of 500+ defect images via
+              <strong>Supabase</strong>.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Jetson Orin Nano</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Python</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">ML</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Supabase</span>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2025 · Cloud Architecture
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              Secure AWS Architecture
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Designed secure AWS architecture with S3 in VPC, VPC endpoints, and CloudWatch monitoring. Removed NAT Gateways to improve security posture and reduce operational costs.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">AWS</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">VPC</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">S3</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">CloudWatch</span>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2024 · AgriTech
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              Tanamify Backend API
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Developed backend API for ML-based crop optimization app using <strong>Express.js</strong> and
+              <strong>PostgreSQL</strong>, deployed on <strong>GCP</strong>. Handled user auth, prediction storage,
+              and API integration with ML models.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Express.js</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">PostgreSQL</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">ML Integration</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">GCP</span>
+            </div>
+          </article>
+
+          <!-- Project 7 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2024 · MIS &amp; Finance
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              Integrated Purchase Request System
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Built a web-based MIS connected to E-Budget, with two-stage approval and automated reporting via
+              <strong>JasperReports</strong>, improving procurement transparency and control.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">PHP</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">JavaScript</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Oracle DB</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">JasperReports</span>
+            </div>
+          </article>
+
+          <!-- Project 8 -->
+          <article class="reveal card-shell-light p-6 sm:p-7">
+            <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-2">
+              2024 · NLP &amp; Research
+            </p>
+            <h3 class="font-headline text-xl font-semibold text-slate-900 mb-3">
+              Twitter Sentiment Analysis via IndoBERT
+            </h3>
+            <p class="text-slate-600 mb-4">
+              Conducted sentiment analysis on Twitter user reviews using <strong>RoBERTa</strong> for auto-labelling and
+              fine-tuned <strong>IndoBERT</strong> to capture Indonesian language nuances.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">Python</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">IndoBERT</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">RoBERTa</span>
+              <span class="px-3 py-1 rounded-full border border-slate-300 text-xs">NLP</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+      <div class="reveal mb-8">
+        <p class="text-[11px] tracking-[0.22em] uppercase text-slate-400 mb-3">
+          Recognition &amp; Certifications
+        </p>
+        <h2 class="font-headline text-3xl sm:text-4xl font-semibold">
+          <span class="stroke-text text-slate-100">Achievements</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-7 text-sm">
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">Dean's Award</h3>
+          <p class="text-slate-300 mb-2">
+            Faculty of Science and Mathematics, Diponegoro University
+          </p>
+          <p class="text-xs text-slate-400">
+            15 Best Graduates · 124th Graduation Ceremony
+          </p>
+        </article>
+
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">Bangkit Graduate</h3>
+          <p class="text-slate-300 mb-2">
+            Cloud Computing with Distinction
+          </p>
+          <p class="text-xs text-slate-400">
+            Top 10% Graduate · Google, Tokopedia, Gojek, Traveloka
+          </p>
+        </article>
+
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">Top Performer</h3>
+          <p class="text-slate-300 mb-2">
+            English Proficiency
+          </p>
+          <p class="text-xs text-slate-400">
+            Top 1,000 performers in English courses &amp; tests
+          </p>
+        </article>
+
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">ACA Cloud Computing</h3>
+          <p class="text-slate-300 mb-2">
+            Alibaba Cloud Academy
+          </p>
+          <p class="text-xs text-slate-400">
+            Cloud Computing Certification
+          </p>
+        </article>
+
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">Oracle Database</h3>
+          <p class="text-slate-300 mb-2">
+            Oracle Academy
+          </p>
+          <p class="text-xs text-slate-400">
+            Database Design &amp; PL/SQL Programming
+          </p>
+        </article>
+
+        <article class="reveal card-shell p-6 sm:p-7">
+          <h3 class="font-headline text-lg font-semibold mb-1.5">MS Power Platform</h3>
+          <p class="text-slate-300 mb-2">
+            Microsoft Certification
+          </p>
+          <p class="text-xs text-slate-400">
+            PL-400T00-A Developer
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bg-slate-50 text-slate-900 py-14 lg:py-18">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center mb-9">
+          <p class="text-[11px] tracking-[0.22em] uppercase text-slate-500 mb-3">
+            Let's Connect
+          </p>
+          <h2 class="font-headline text-3xl sm:text-4xl font-semibold mb-4">
+            Get In <span class="stroke-text" style="-webkit-text-stroke-color:#020617;">Touch</span>
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+            Open to roles in <strong>Backend Engineering</strong>, <strong>Cloud Engineering</strong>,
+            <strong>Data Engineering</strong>, and <strong>Industrial Digitalization</strong>.
+            Happy to discuss how my projects can support your team.
+          </p>
+        </div>
+
+        <div class="reveal grid md:grid-cols-3 gap-5 mb-10 text-sm">
+          <div class="card-shell-light p-5 text-center">
+            <h3 class="font-headline font-semibold mb-2 text-slate-900">
+              Email
+            </h3>
+            <a
+              href="mailto:erlanig221@gmail.com"
+              class="text-slate-700 hover:text-sky-600 break-all transition-colors"
+            >
+              erlanig221@gmail.com
+            </a>
+          </div>
+
+          <div class="card-shell-light p-5 text-center">
+            <h3 class="font-headline font-semibold mb-2 text-slate-900">
+              Phone
+            </h3>
+            <a
+              href="tel:+6282116650025"
+              class="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              +62 821-1665-0025
+            </a>
+          </div>
+
+          <div class="card-shell-light p-5 text-center">
+            <h3 class="font-headline font-semibold mb-2 text-slate-900">
+              Location
+            </h3>
+            <p class="text-slate-700">
+              Bogor, Indonesia
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal flex flex-col sm:flex-row justify-center gap-4 mb-10 text-sm">
+          <a
+            href="mailto:erlanig221@gmail.com"
+            class="inline-flex justify-center px-10 py-3 rounded-full bg-slate-900 text-white font-headline font-semibold tracking-[0.16em] uppercase hover:bg-slate-800 transition-colors"
+          >
+            Send Email
+          </a>
+          <a
+            href="https://linkedin.com/in/erlanig"
+            target="_blank"
+            class="inline-flex justify-center px-10 py-3 rounded-full border border-slate-700 text-slate-900 font-headline font-semibold tracking-[0.16em] uppercase hover:border-sky-500 hover:text-sky-600 transition-colors"
+          >
+            LinkedIn Profile
+          </a>
+        </div>
+
+        <div class="reveal flex justify-center gap-4 text-xs">
+          <a
+            href="https://linkedin.com/in/erlanig"
+            target="_blank"
+            class="w-9 h-9 rounded-full border border-slate-700 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+          >
+            in
+          </a>
+          <a
+            href="https://github.com/erlanig"
+            target="_blank"
+            class="w-9 h-9 rounded-full border border-slate-700 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+          >
+            GH
+          </a>
+          <a
+            href="https://instagram.com/erlanig_"
+            target="_blank"
+            class="w-9 h-9 rounded-full border border-slate-700 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+          >
+            @
+          </a>
+          <a
+            href="https://bit.ly/portofolio-erlanig2025"
+            target="_blank"
+            class="w-9 h-9 rounded-full border border-slate-700 flex items-center justify-center text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+          >
+            WWW
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800 bg-black py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="text-center md:text-left">
+        <p class="font-headline text-lg font-semibold text-slate-100">
+          EIG
+        </p>
+        <p>Building industrial-grade systems, one line of code at a time.</p>
+      </div>
+      <div class="text-center">
+        <p>© 2025 Erlan Irhab Ghalib</p>
+        <p class="mt-1 text-[10px] text-slate-500">All rights reserved</p>
+      </div>
+      <div class="flex gap-4">
+        <a href="#about" class="hover:text-slate-200 transition-colors">About</a>
+        <a href="#experience" class="hover:text-slate-200 transition-colors">Work</a>
+        <a href="#contact" class="hover:text-slate-200 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS: Reveal + Mobile menu -->
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-show');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach(el => observer.observe(el));
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          mobileMenu.classList.add('mobile-menu-enter');
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('mobile-menu-enter-active');
+            mobileMenu.classList.remove('mobile-menu-enter');
+          });
+        } else {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('mobile-menu-enter-active');
+        }
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('mobile-menu-enter-active');
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -39,12 +39,6 @@
       animation: gradientMove 15s ease infinite;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .animated-text {
       font-weight: 700;
       background: linear-gradient(270deg, #db85ff, #f472b6, #50c0f0, #c4f9ff);
@@ -58,7 +52,7 @@
     /* Custom Toggle Switch Styles */
     .toggle-switch-container {
         position: relative;
-        width: 68px; /* Slightly wider for the content */
+        width: 68px;
         height: 34px;
         border-radius: 17px;
         transition: background-color 0.4s ease;
@@ -66,10 +60,10 @@
         cursor: pointer;
     }
     .light .toggle-switch-container {
-        background-color: #87ceeb; /* Light blue sky */
+        background-color: #87ceeb; 
     }
     .dark .toggle-switch-container {
-        background-color: #1a202c; /* Dark night sky */
+        background-color: #1a202c; 
     }
 
     .toggle-slider {
@@ -85,35 +79,17 @@
         justify-content: center;
     }
     .light .toggle-slider {
-        background-color: #fdd835; /* Yellow sun */
+        background-color: #fdd835; 
         transform: translateX(0);
     }
     .dark .toggle-slider {
-        background-color: #f5f5f5; /* Off-white moon */
+        background-color: #f5f5f5; 
         transform: translateX(34px);
+        box-shadow: 
+          -5px 2px 0 0 rgba(0,0,0,0.1), 
+          -10px 4px 0 0 rgba(0,0,0,0.05);
     }
 
-    .toggle-icon {
-        font-size: 1.2rem;
-        position: absolute;
-        transition: opacity 0.4s ease;
-    }
-
-    .sun-icon {
-        opacity: 1;
-    }
-    .dark .sun-icon {
-        opacity: 0;
-    }
-
-    .moon-icon {
-        opacity: 0;
-    }
-    .dark .moon-icon {
-        opacity: 1;
-    }
-
-    /* Additional elements for the scene */
     .clouds {
         position: absolute;
         right: 10px;
@@ -130,12 +106,8 @@
         border-radius: 6px 6px 0 0;
         box-shadow: 0 -2px 0 2px #ffffff;
     }
-    .light .clouds {
-        opacity: 1;
-    }
-    .dark .clouds {
-        opacity: 0;
-    }
+    .light .clouds { opacity: 1; }
+    .dark .clouds { opacity: 0; }
 
     .stars {
         position: absolute;
@@ -152,43 +124,37 @@
         background-color: #f5f5f5;
         border-radius: 50%;
     }
-    .light .stars {
-        opacity: 0;
-    }
-    .dark .stars {
-        opacity: 1;
-    }
+    .light .stars { opacity: 0; }
+    .dark .stars { opacity: 1; }
 
-    /* Adjust the moon position to appear more like the reference image */
-    .dark .toggle-slider {
-      transform: translateX(34px);
-      background-color: #f5f5f5;
-      box-shadow: 
-        -5px 2px 0 0 rgba(0,0,0,0.1), 
-        -10px 4px 0 0 rgba(0,0,0,0.05);
+    @keyframes gentle-swing {
+      0% { transform: rotate(-2deg); }
+      100% { transform: rotate(2deg); }
+    }
+    .animate-swing {
+      animation: gentle-swing 4s ease-in-out infinite alternate;
+      transform-origin: top center;
     }
   </style>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
-  <!-- Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white/10 dark:bg-gray-800/30 backdrop-blur-md shadow z-50">
     <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
       <a href="#" class="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
         <img src="assets/imgs/icon.png" class="w-8 h-8">
       </a>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex space-x-6 font-medium dark:text-white">
+      <div class="hidden md:flex space-x-6 font-medium dark:text-white items-center">
         <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">About</a>
         <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Skills</a>
         <a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Experience</a>
-        <a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Projects</a>
         <a href="#education" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Education</a>
+        <a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Projects</a>
+        <a href="#posts" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Posts</a>
         <a href="#certificates" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Certificates</a>
         <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 p-2">Contact</a>
 
-        <!-- Toggle Desktop -->
         <div id="theme-toggle" class="toggle-switch-container">
           <div class="toggle-slider"></div>
           <div class="clouds">
@@ -203,7 +169,6 @@
         </div>
       </div>
 
-      <!-- Mobile Menu -->
       <div class="flex items-center md:hidden">
         <div id="theme-toggle-mobile" class="toggle-switch-container">
           <div class="toggle-slider"></div>
@@ -227,159 +192,283 @@
     </div>
   </nav>
 
-  <script>
-    const btn = document.getElementById('mobile-menu-button');
-    const menu = document.getElementById('mobile-menu');
-
-    if(btn && menu){
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-      });
-}
-  </script>
-
-  <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 overflow-hidden">
+  <header class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pb-16 overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500 via-purple-600 to-indigo-400 animate-gradient-slow"></div>
 
-    <h1 class="text-5xl md:text-6xl font-extrabold text-white fade-up relative z-10">Erlan Irhab Ghalib</h1>
-    <p class="mt-4 text-lg md:text-xl max-w-2xl fade-up relative z-10 text-white">
-    Fresh Graduate of Informatics from Diponegoro University. Passionate about  
-    <span class="animated-text" data-text="Cloud">Cloud</span>, 
-    <span class="animated-text" data-text="AI">AI</span>, and 
-    <span class="animated-text" data-text="Software Engineering">Software Engineering</span>.
+    <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-white opacity-10 blur-[100px] rounded-full -z-10"></div>
+
+    <div class="max-w-4xl mx-auto flex flex-col items-center z-10 w-full relative">
+      
+      <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8 shadow-lg">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-xs md:text-sm font-medium text-white tracking-widest uppercase opacity-90">Available for Work</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white fade-up tracking-tight mb-6 drop-shadow-xl">
+        Erlan Irhab Ghalib
+      </h1>
+      
+      <p class="text-lg md:text-2xl max-w-2xl fade-up text-indigo-50 font-light leading-relaxed mb-10 drop-shadow-md">
+        Fresh Graduate of Informatics from Diponegoro University. Passionate about  
+        <span class="animated-text font-semibold tracking-wide text-white" data-text="Cloud">Cloud</span>, 
+        <span class="animated-text font-semibold tracking-wide text-white" data-text="Sys. Dev">Sys. Dev</span>, and 
+        <span class="animated-text font-semibold tracking-wide text-white" data-text="Data Engineering">Data Engineering</span>.
       </p>
-    <div class="mt-6 flex gap-4 fade-up relative z-10">
-      <a href="#contact" class="px-6 py-3 rounded-2xl bg-white/20 text-white font-semibold shadow hover:scale-105 transition flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8m0-8L3 8m12 0l6 4.5" />
-        </svg>
-        Contact Me
-      </a>
-      <a href="https://drive.google.com/uc?export=download&id=1dU9JjTZWZMaRAflMsI0UWFnQenhB6vMs"  download class="px-6 py-3 rounded-2xl border border-white text-white hover:bg-white/20 transition flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12v8m0 0l-4-4m4 4l4-4M12 4v8" />
-        </svg>
-        Download CV
-      </a>
+      
+      <div class="flex flex-col sm:flex-row gap-5 fade-up w-full sm:w-auto justify-center">
+        <a href="#contact" class="px-8 py-4 rounded-full bg-white text-indigo-600 font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 4v8m0-8L3 8m12 0l6 4.5" />
+          </svg>
+          Let's Talk
+        </a>
+        
+        <a href="https://drive.google.com/uc?export=download&id=1dU9JjTZWZMaRAflMsI0UWFnQenhB6vMs" download class="px-8 py-4 rounded-full border-2 border-white/50 text-white font-semibold backdrop-blur-sm hover:bg-white hover:text-indigo-600 transition-all duration-300 flex items-center justify-center gap-3 group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12v8m0 0l-4-4m4 4l4-4M12 4v8" />
+          </svg>
+          Download CV
+        </a>
+      </div>
     </div>
+
+    <a href="#about" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 hover:opacity-100 transition-opacity duration-300 z-20 group cursor-pointer">
+      <span class="text-white/80 text-[10px] font-bold tracking-[0.25em] uppercase group-hover:-translate-y-1 transition-transform duration-300">Scroll Down</span>
+      <div class="w-7 h-12 border-2 border-white/60 rounded-full flex justify-center pt-2">
+        <div class="w-1.5 h-2.5 bg-white rounded-full animate-bounce"></div>
+      </div>
+    </a>
   </header>
 
-  <section id="about" class="w-full py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-4 items-center">
+  <section id="about" class="w-full py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center">
       
-      <!-- Avatar -->
-      <img src="assets/imgs/pp.png" 
-          class="rounded-2xl shadow-lg w-64 mx-auto md:mx-0" 
-          alt="Avatar" />
+      <div class="md:col-span-5 flex flex-col items-center justify-start pt-4 animate-swing">
+        
+        <div class="relative w-full flex justify-center -mb-2 z-0">
+          <div class="w-4 h-24 bg-gradient-to-b from-indigo-700 to-indigo-500 dark:from-indigo-900 dark:to-indigo-600 transform -rotate-[15deg] translate-x-3 rounded-t-full shadow-md shadow-indigo-900/20"></div>
+          <div class="w-4 h-24 bg-gradient-to-b from-indigo-800 to-indigo-600 dark:from-indigo-950 dark:to-indigo-700 transform rotate-[15deg] -translate-x-3 rounded-t-full shadow-md shadow-indigo-900/20"></div>
+        </div>
 
-      <!-- About Text -->
-      <div>
-        <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-4 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="relative flex flex-col items-center z-10 -mt-2 mb-1">
+          <div class="w-10 h-8 bg-gradient-to-b from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600 rounded-t-md shadow-md border border-gray-400 dark:border-gray-500 flex justify-center items-center">
+            <div class="w-6 h-2 bg-gray-800/40 dark:bg-gray-900/50 rounded-full"></div>
+          </div>
+          <div class="w-5 h-6 border-4 border-gray-400 dark:border-gray-500 rounded-b-xl border-t-0 -mt-1 z-0"></div>
+        </div>
+
+        <div class="relative z-20 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-[0_20px_50px_rgba(79,_70,_229,_0.15)] dark:shadow-[0_20px_50px_rgba(0,_0,_0,_0.5)] border border-gray-200 dark:border-gray-700 p-2 transition-transform duration-300 hover:scale-105">
+          
+          <div class="border-2 border-dashed border-gray-200 dark:border-gray-600 rounded-xl p-6 flex flex-col items-center bg-gray-50/50 dark:bg-gray-800/50">
+            
+            <div class="w-12 h-2.5 bg-gray-300 dark:bg-gray-900 rounded-full mb-6 shadow-inner"></div>
+            
+            <div class="relative w-32 h-32 mb-6">
+              <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-2xl transform rotate-6 opacity-50 dark:opacity-40"></div>
+              <img src="assets/imgs/pp.png" 
+                  alt="Avatar" 
+                  class="relative z-10 w-full h-full object-cover rounded-2xl border-4 border-white dark:border-gray-700 shadow-md bg-white dark:bg-gray-800"
+                  onerror="this.style.display='none'">
+            </div>
+
+            <div class="text-center w-full">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wider leading-tight mb-1">
+                System<br>Developer
+              </h3>
+              <div class="flex items-center justify-center gap-2 my-2">
+                <span class="w-4 h-px bg-indigo-500"></span>
+                <span class="text-indigo-500 font-bold">&amp;</span>
+                <span class="w-4 h-px bg-indigo-500"></span>
+              </div>
+              <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider leading-tight">
+                Data<br>Engineer
+              </h3>
+            </div>
+
+            <div class="w-8 h-6 rounded border border-yellow-500/50 bg-gradient-to-br from-yellow-200 to-yellow-400 dark:from-yellow-600 dark:to-yellow-700 mt-6 opacity-80 flex flex-wrap justify-between p-[2px] gap-[2px]">
+              <div class="w-2 h-2 border-r border-b border-yellow-600/30"></div>
+              <div class="w-2 h-2 border-b border-yellow-600/30"></div>
+              <div class="w-2 h-2 border-r border-yellow-600/30"></div>
+              <div class="w-2 h-2"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="md:col-span-7 flex flex-col justify-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-6 flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1112 21V12H5.121z"/>
           </svg>
           About Me
         </h2>
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-          I am a fresh graduate of Informatics from Diponegoro University with hands-on experience in cloud, AI, software engineering, and IoT engineering. 
-          Skilled in backend development, cloud-native solutions, and machine learning projects. 
-          Proficient in Python, JavaScript, PHP, SQL/NoSQL, and experienced with cloud platforms (GCP, AWS).
-        </p>
+        
+        <div class="space-y-4">
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-justify">
+            Fresh graduate in Informatics from Diponegoro University experienced in developing data-driven systems and industrial monitoring solutions. Proficient in <strong>Python, JavaScript, PHP, and SQL</strong>. 
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-justify">
+            Skilled in building scalable backends, automating data pipelines, and deploying cloud infrastructure (<strong>GCP, AWS, Tencent, Docker, CI/CD</strong>). Passionate about driving digital transformation and operational excellence in dynamic environments.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-2">
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">Cloud Computing</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">Data Engineering</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">Sys Dev</span>
+          <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700">IoT Integration</span>
+        </div>
       </div>
 
     </div>
   </section>
 
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 flex justify-center items-center gap-3 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+          Technical Skills
+        </h2>
 
-    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 flex justify-center items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        Technical Skills
-      </h2>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center items-center">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center w-full">
-            <h3 class="font-semibold text-center text-lg mb-2 text-indigo-600 dark:text-indigo-400">Skills Radar</h3>
-            <canvas id="skillsChart" class="w-full h-auto dark:text-gray-300"></canvas>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
-          <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300">
-            <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Programming</h3>
-            <div class="flex gap-4 flex-wrap justify-center">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-10 h-10" alt="Python">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-10 h-10" alt="JavaScript">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-10 h-10" alt="PHP">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-10 h-10" alt="Java">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 flex flex-col items-center lg:sticky lg:top-24 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <h3 class="font-bold text-xl mb-6 text-gray-800 dark:text-gray-100 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              Proficiency Radar
+            </h3>
+            <div class="w-full relative aspect-square">
+              <canvas id="skillsChart" class="w-full h-full"></canvas>
             </div>
           </div>
 
-          <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300">
-            <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Databases</h3>
-            <div class="flex gap-4 flex-wrap justify-center">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-10 h-10" alt="MySQL">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="w-10 h-10" alt="PostgreSQL">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" class="w-10 h-10" alt="Oracle">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" class="w-10 h-10" alt="SQL Server">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="w-10 h-10" alt="Supabase">
-            </div>
-          </div>
+          <div class="lg:col-span-8 grid sm:grid-cols-2 gap-6 w-full">
 
-          <div class="bg-white dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg p-6 flex flex-col gap-3 items-center transform hover:scale-105 transition-all duration-300 col-span-2">
-            <h3 class="font-semibold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Cloud & Tools</h3>
-            <div class="flex gap-4 flex-wrap justify-center">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="w-10 h-10" alt="GCP">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="w-10 h-10" alt="AWS">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-10 h-10" alt="Docker">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="w-10 h-10" alt="Nginx">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-10 h-10" alt="Git">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" class="w-10 h-10" alt="Postman">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" class="w-10 h-10" alt="Selenium">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Programming</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-4 h-4" alt="Python"> Python</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-4 h-4" alt="JS"> JavaScript</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-4 h-4" alt="PHP"> PHP</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">SQL</span>
+              </div>
             </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Frameworks</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" class="w-4 h-4" alt="Laravel"> Laravel</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" class="w-4 h-4 dark:invert" alt="Express"> Express.js</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" class="w-4 h-4 dark:invert" alt="Flask"> Flask</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" class="w-4 h-4" alt="FastAPI"> FastAPI</span>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Data & Database</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="w-4 h-4" alt="Postgres"> PostgreSQL</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" class="w-4 h-4" alt="MSSQL"> SQL Server</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-4 h-4" alt="MySQL"> MySQL</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" class="w-4 h-4" alt="Oracle"> Oracle</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" class="w-4 h-4" alt="Supabase"> Supabase</span>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Data Engineering</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">Apache Airflow</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">dbt</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">SQL Agent</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">ETL Pipeline</span>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Cloud & Infra</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="w-4 h-4" alt="GCP"> GCP</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" class="w-4 h-4 dark:invert" alt="AWS"> AWS</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">Tencent Cloud</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-4 h-4" alt="Docker"> Docker</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" class="w-4 h-4" alt="Nginx"> Nginx</span>
+              </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 transition-all hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-500">
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-4 border-b pb-2 dark:border-gray-700">Tools & Architecture</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-4 h-4" alt="Git"> Git</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" class="w-4 h-4" alt="GitLab"> CI/CD GitLab</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" class="w-4 h-4" alt="Postman"> Postman</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg" class="w-4 h-4" alt="Selenium"> Selenium</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">REST API</span>
+                <span class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300">System Design</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <section id="experience" class="py-20 dark:bg-gray-700">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon-style" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zM12 14v7m0-7L3 9m9 5l9-5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zM12 14v7m0-7L3 9m9 5l9-5"/></svg>
         Work Experience
       </h2>
       <div class="space-y-8">
-        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-indigo-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/></svg>
+        
+        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4 transition hover:shadow-md">
+          <img src="https://www.disnakerja.com/wp-content/uploads/2021/08/Bukaka-Teknik-Utama-Tbk.jpg" 
+              alt="PT Bukaka Logo" 
+              class="w-12 h-12 object-contain bg-white rounded-lg border border-gray-200 dark:border-gray-300 shadow-sm shrink-0 p-1"
+              onerror="this.style.display='none'">
           <div>
-            <h3 class="font-semibold dark:text-gray-600">PT Bukaka Teknik Utama, Tbk – Management Trainee (2025)</h3>
-            <p class="dark:text-gray-600">Developed Delivery Orders, Packing Lists, and Master Data website using Laravel + MS SQL Server.</p>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-800">PT Bukaka Teknik Utama, Tbk – Management Trainee (2025)</h3>
+            <p class="text-gray-600 dark:text-gray-600 mt-1">Developed Delivery Orders, Packing Lists, and Master Data website using Laravel + MS SQL Server.</p>
           </div>
         </div>
-        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-purple-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-6-8h6"/></svg>
+
+        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4 transition hover:shadow-md">
+          <img src="https://bloguna.com/wp-content/uploads/2025/05/Logo-Bank-Syariah-Indonesia-BSI-Format-CDR-PNG-AI-PSD-EPS-SVG-300x169.png" 
+              alt="BSI Logo" 
+              class="w-12 h-12 object-contain bg-white rounded-lg border border-gray-200 dark:border-gray-300 shadow-sm shrink-0 p-1"
+              onerror="this.style.display='none'">
           <div>
-            <h3 class="font-semibold dark:text-gray-600">Bank Syariah Indonesia – Data Analyst Intern (2025)</h3>
-            <p class="dark:text-gray-600">Processed savings data of 30M+ customers, analyzed fund drops using SQL Server & Power BI.</p>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-800">Bank Syariah Indonesia – Data Analyst Intern (2025)</h3>
+            <p class="text-gray-600 dark:text-gray-600 mt-1">Processed savings data of 30M+ customers, analyzed fund drops using SQL Server & Power BI.</p>
           </div>
         </div>
-        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-green-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+
+        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4 transition hover:shadow-md">
+          <img src="https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/pvyr08azklir2ba3ok1n?ik-sanitizeSvg=true" 
+              alt="Kalbe Farma Logo" 
+              class="w-12 h-12 object-contain bg-white rounded-lg border border-gray-200 dark:border-gray-300 shadow-sm shrink-0 p-1"
+              onerror="this.style.display='none'">
           <div>
-            <h3 class="font-semibold dark:text-gray-600">PT Kalbe Farma, Tbk – IoT Engineer Intern (2024-2025)</h3>
-            <p class="dark:text-gray-600">Prototyped defect detection using Jetson Orin Nano & thermal camera, automated defect logging to cloud.</p>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-800">PT Kalbe Farma, Tbk – IoT Engineer Intern (2024-2025)</h3>
+            <p class="text-gray-600 dark:text-gray-600 mt-1">Prototyped defect detection using Jetson Orin Nano & thermal camera, automated defect logging to cloud.</p>
           </div>
         </div>
-        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon-style text-yellow-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6"/></svg>
+
+        <div class="bg-gray-50 dark:bg-white rounded-xl shadow p-6 flex items-start gap-4 transition hover:shadow-md">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg" 
+              alt="Toyota Logo" 
+              class="w-12 h-12 object-contain bg-white rounded-lg border border-gray-200 dark:border-gray-300 shadow-sm shrink-0 p-1"
+              onerror="this.style.display='none'">
           <div>
-            <h3 class="font-semibold dark:text-gray-600">Rejeki Toyota – Software Engineer Intern (2024)</h3>
-            <p class="dark:text-gray-600">Built Purchase Request Management System integrated with Oracle-based E-Budget System.</p>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-800">Rejeki Toyota – Software Engineer Intern (2024)</h3>
+            <p class="text-gray-600 dark:text-gray-600 mt-1">Built Purchase Request Management System integrated with Oracle-based E-Budget System.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -531,9 +620,111 @@
         </div>
         <p class="text-sm text-gray-600 dark:text-gray-300">Developed integrated information system Delivery Orders, SIPB, Packing List & Shipment Tracking (with photo, watermark timestamp, and user proof).</p>
       </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h7"/>
+          </svg>
+          <p class="font-semibold dark:text-gray-300">Scalable ETL Pipeline (2025)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Architected ETL pipeline using Apache Airflow and dbt to automate data extraction from Oracle Fusion via SOAP API, transform data, and centralize reporting in SQL Server, reducing manual consolidation across multiple business units.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h2m0 0V7m0 4l3-3m-3 3l-3-3"/>
+          </svg>
+          <p class="font-semibold dark:text-gray-300">Oracle BI Publisher Reporting (2026)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Developed custom reporting solutions using Oracle BI Publisher with complex SQL on Oracle Fusion tables, delivering parameterized Excel reports for inventory and procurement self-service analysis.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover:scale-105 transition">
+        <div class="flex items-center gap-2 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          <p class="font-semibold dark:text-gray-300">CI/CD Pipeline with GitLab (2026)</p>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Designed and implemented CI/CD pipeline on GitLab with VMs on Tencent Cloud Lighthouse, automating build, test, and deployment workflows to improve reliability and accelerate release cycles.</p>
+      </div>
     </div>
   </div>
 </section>
+
+  <section id="posts" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-12 text-center flex justify-center items-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.924 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        Recent Updates & Activity
+      </h2>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <a href="https://www.linkedin.com/posts/erlanig_eksperimen-sederhana-activity-7431655315571560448-xrh_?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADco-uYB2C_h_4cV6qKThNaWGhnuSfYzLHw" target="_blank" class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 p-6 flex flex-col h-full hover:-translate-y-2 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-900 transition-all duration-300 group cursor-pointer">
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex items-center gap-3">
+              <img src="assets/imgs/pp.png" alt="Erlan" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" onerror="this.src='https://ui-avatars.com/api/?name=Erlan+Ghalib&background=6366f1&color=fff'">
+              <div>
+                <h4 class="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Erlan Irhab Ghalib</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">System Developer & Data Engineer</p>
+              </div>
+            </div>
+            <svg class="w-6 h-6 text-[#0A66C2] opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.924 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Eksperimen Sederhana</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 flex-grow mb-4 leading-relaxed">Membagikan sedikit cerita tentang eksperimen sederhana yang saya lakukan. Terkadang dari eksplorasi teknis berskala kecil, kita bisa menemukan insight berharga untuk pengembangan yang lebih besar...</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] dark:text-blue-400 group-hover:underline">
+            Read full post
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </span>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/erlanig_scaling-our-heaviest-dataset-with-a-38-speed-activity-7418884626582069248-Nj9o?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADco-uYB2C_h_4cV6qKThNaWGhnuSfYzLHw" target="_blank" class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 p-6 flex flex-col h-full hover:-translate-y-2 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-900 transition-all duration-300 group cursor-pointer">
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex items-center gap-3">
+              <img src="assets/imgs/pp.png" alt="Erlan" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" onerror="this.src='https://ui-avatars.com/api/?name=Erlan+Ghalib&background=6366f1&color=fff'">
+              <div>
+                <h4 class="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Erlan Irhab Ghalib</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">System Developer & Data Engineer</p>
+              </div>
+            </div>
+            <svg class="w-6 h-6 text-[#0A66C2] opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.924 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">Scaling Dataset (38x Speed)</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 flex-grow mb-4 leading-relaxed">Berbagi pengalaman teknis tentang bagaimana kami berhasil melakukan scaling pada dataset terberat kami dan mencapai peningkatan kecepatan proses data pipeline hingga 38x lipat...</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] dark:text-blue-400 group-hover:underline">
+            Read full post
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </span>
+        </a>
+
+        <a href="https://www.linkedin.com/posts/erlanig_ojt1wrapped-activity-7406939402947555328-D5fE?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADco-uYB2C_h_4cV6qKThNaWGhnuSfYzLHw" target="_blank" class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 p-6 flex flex-col h-full hover:-translate-y-2 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-900 transition-all duration-300 group cursor-pointer">
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex items-center gap-3">
+              <img src="assets/imgs/pp.png" alt="Erlan" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" onerror="this.src='https://ui-avatars.com/api/?name=Erlan+Ghalib&background=6366f1&color=fff'">
+              <div>
+                <h4 class="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Erlan Irhab Ghalib</h4>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">System Developer & Data Engineer</p>
+              </div>
+            </div>
+            <svg class="w-6 h-6 text-[#0A66C2] opacity-80" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.924 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2 text-indigo-600 dark:text-indigo-400">OJT 1 Wrapped</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 flex-grow mb-4 leading-relaxed">OJT 1 Wrapped! Merenungkan kembali berbagai pencapaian, tantangan, dan pelajaran luar biasa selama fase pertama perjalanan On-the-Job Training saya. Banyak pengalaman teknis baru...</p>
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#0A66C2] dark:text-blue-400 group-hover:underline">
+            Read full post
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
 
   <section id="certificates" class="py-20 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-6 text-center">
@@ -620,7 +811,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v10a2 2 0 01-2 2h-2M7 8H5a2 2 0 00-2 2v10a2 2 0 002 2h2m0-14V4a4 4 0 014-4h2a4 4 0 014 4v4"/>
         </svg>
         <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200">Location</h3>
-        <p class="text-gray-600 dark:text-gray-400">Jakarta, Indonesia</p>
+        <p class="text-gray-600 dark:text-gray-400">Bogor, Indonesia</p>
       </div>
     </div>
 
@@ -672,24 +863,10 @@
   }, { threshold: 0.2 });
   faders.forEach(fader => observer.observe(fader));
 
-  // Dark mode toggle
-  function toggleDarkMode(btnId, moonId, sunId) {
-  const btn = document.getElementById(btnId);
-  const moon = document.getElementById(moonId);
-  const sun = document.getElementById(sunId);
-
-  btn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    const isDark = document.body.classList.contains("dark");
-    moon.classList.toggle("opacity-0", isDark);
-    sun.classList.toggle("opacity-0", !isDark);
-  });
-}
-
   const toggles = [document.getElementById("theme-toggle"), document.getElementById("theme-toggle-mobile")];
   const body = document.body;
 
-  // cek preferensi user
+  // Cek preferensi user saat halaman pertama dimuat
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     body.classList.add("dark");
   } else {
@@ -697,10 +874,14 @@
     body.classList.add("light");
   }
 
+  // Event listener untuk tombol toggle Dark Mode
   toggles.forEach(toggle => {
     toggle.addEventListener("click", () => {
       body.classList.toggle("dark");
       body.classList.toggle("light");
+      
+      // MEMANGGIL FUNGSI UPDATE CHART SAAT TOMBOL DI-KLIK
+      updateChartColors(); 
     });
   });
 
@@ -712,7 +893,7 @@
     labels: ['Cloud', 'Backend Dev', 'Database', 'AI/ML', 'DevOps', 'IoT'],
     datasets: [{
       label: 'My Skills',
-      data: [8, 7, 9, 7, 5, 6], // Nilai 1-10
+      data: [8, 7, 9, 7, 5, 6],
       backgroundColor: 'rgba(99, 102, 241, 0.2)',
       borderColor: '#6366f1',
       borderWidth: 2,
@@ -721,26 +902,6 @@
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: '#6366f1',
     }]
-  };
-
-  const skillsOptions = {
-    plugins: {
-      legend: {
-        labels: {
-          color: isDarkMode ? '#d1d5db' : '#4b5563' // gray-300 : gray-600
-        }
-      }
-    },
-    scales: {
-      r: {
-        pointLabels: {
-          color: isDarkMode ? '#d1d5db' : '#4b5563' // buat label radar chart
-        },
-        ticks: {
-          color: isDarkMode ? '#d1d5db' : '#4b5563'
-        }
-      }
-    }
   };
 
   const skillsChart = new Chart(ctx, {
@@ -768,6 +929,7 @@
     }
   });
 
+  // Fungsi untuk mengganti warna chart sesuai mode saat ini
   function updateChartColors() {
     const isDark = document.body.classList.contains('dark');
     const pointLabelColor = isDark ? '#f3f4f6' : '#1f2937';
@@ -779,6 +941,9 @@
 
     skillsChart.update();
   }
+
+  // Panggil fungsi ini sekali di awal untuk memastikan warna sudah benar
+  updateChartColors();
 
 </script>
 
